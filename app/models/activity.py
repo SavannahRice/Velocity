@@ -8,6 +8,7 @@ class Activity(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     activity_type_id = db.Column(db.Integer, db.ForeignKey('activity_types.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     gps_file_url = db.Column(db.String(256))
     photo_url = db.Column(db.String(256))
     activity_description = db.Column(db.Text, nullable=False)
@@ -22,7 +23,7 @@ class Activity(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False,
         default=datetime.date.today())
     
-    user = db.relationship('User', backref='activities')
+    # user_activities = db.relationship('User', backref='activities')
     activity_type = db.relationship('Activity_Type', backref='activity')
 
     def to_dict(self):

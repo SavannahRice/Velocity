@@ -11,9 +11,10 @@ def seed_users():
     url = 'https://api.unsplash.com/search/photos/?query=cyclist&count=30&client_id=w7D9hahfveF5lpAyA5ED7oMcmfmnf-34xpUmZsC2ubs'
     r = requests.get(url)
     response = r.json()
-    newList = []
-    for item in response:
-        newList.append(item["urls"]["small"])
+    photos = []
+    photoObj = response['results']
+    for photo in photoObj:
+        photos.append(photo['urls']['small'])
 
     cities = [
         'Alameda',
@@ -59,9 +60,21 @@ def seed_users():
     ]
 
     demo = User(username='Demo', email='demo@aa.io',
-                password='password')
+                city='Walnut Creeek',
+                state='California',
+                avatar_img='https://i.pinimg.com/736x/c4/16/43/c416433733a9a307266208014a5fc92a.jpg',
+                hashed_password='password')
 
     db.session.add(demo)
+
+    for num in range(50):
+        user = User(username=fake.name(), 
+        email=fake.email(), 
+        city=cities[random.randrange(len(cities))],
+        state='California',
+        avatar_img=photos[random.randrange(len(photos))],
+        hashed_password='password')
+        db.session.add(user)
 
     db.session.commit()
 

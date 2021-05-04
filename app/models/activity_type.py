@@ -8,7 +8,7 @@ class Activity_Type(db.Model):
     id = db.Column(db.Integer, primary_key = True) 
     description = db.Column(db.String(50), nullable=False, unique=True)
 
-    activity = db.relationship('Activity', backref='activity_type')
+    # activity = db.relationship('Activity', backref='activity_type')
 
     def to_dict(self):
         return {

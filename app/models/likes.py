@@ -9,7 +9,7 @@ class Likes(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'), nullable=False)
 
-    user = db.relationship('User', backref='likes')
+    # user_likes = db.relationship('User', backref='likes')
 
     def to_dict(self):
         return {
