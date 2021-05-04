@@ -1,6 +1,14 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+import datetime
+
+follows = db.Table(
+    # joins table
+    "followers", db.Model.metadata,
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("follower_id", db.Integer, db.ForeignKey("users.id"))
+)
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -13,9 +21,9 @@ class User(db.Model, UserMixin):
   avatar_img = db.Column(db.String(50))
   hashed_password = db.Column(db.String(255), nullable = False)
   created_at = db.Column(db.DateTime, nullable=False,
-        default=datetime.utcnow)
+        default=datetime.date.today())
   updated_at = db.Column(db.DateTime, nullable=False,
-        default=datetime.utcnow)
+        default=datetime.date.today())
 
   activities = db.relationship('Activity', backref='user')
   likes = db.relationship('Likes', backref='user')
