@@ -1,0 +1,91 @@
+.entirePage {
+    width: 100%;
+    display: flex;
+    margin: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 60vh;
+    align-content: center;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+h2 {
+    color: white;
+    margin-top: 50px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.formInput {
+    width: 100%;
+    /* margin: 15px 0px; */
+    /* border: 2px solid blue; */
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    
+
+
+}
+
+input {
+    width: 90%;
+    height: 30px;
+    font-size: 20px;
+    border: 1.5px solid lightgray;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.btnDiv{
+    /* border: 2px solid red; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.formBtn {
+    
+    width: 30%;
+    height: 35px;
+    margin: 5px;
+    border-radius: 5px;
+    outline: none;
+    border: 1.5px solid lightgray;
+    background-color: white;
+    font-size: 20px;
+    color: gray
+}
+
+.rightSide,
+.leftSide {
+    width: 50%;
+}
+
+.leftSide{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #B24592;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F15F79, #B24592);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F15F79, #B24592); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+img {
+    width: 100%;
+    
+}
+
+.errors {
+    /* border: 2px solid red; */
+    height: 80px;
+}
+
