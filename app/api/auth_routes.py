@@ -3,6 +3,8 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.awsS3 import (upload_file_to_s3, allowed_file, get_unique_filename)
+import json
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -60,12 +62,25 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
+    
+    
+    
+    # items = request.body.items()
+    # itemList = list(items)
+    # request.make_form_data_parser()
+    # print('Made it to line 64', data)
+    
     form = SignUpForm()
+    
     form['csrf_token'].data = request.cookies['csrf_token']
+    
+    # print('Made it to line 89')
     if form.validate_on_submit():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
+            city=form.data['city'],
+            state=form.data['state'],
             password=form.data['password']
         )
         db.session.add(user)

@@ -20,7 +20,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(username, email, password));
+      await dispatch(signUp(username, email, city, state, avatar, password));
     }
   };
 
@@ -49,6 +49,7 @@ const SignUpForm = () => {
   }
 
   const updateAvatar = (e) => {
+    e.preventDefault()
     setAvatar(e.target.files[0])
   }
 
@@ -121,9 +122,7 @@ const SignUpForm = () => {
                 className={styles.fileUpload}
                 type="file"
                 name="avatar"
-                placeholder="Profile Picture"
-                onChange={updateAvatar}
-                value={avatar}
+                onChange={(e) => setAvatar(e.target.files[0])}
               ></input>
 
             </div>

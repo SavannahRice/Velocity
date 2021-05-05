@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
   email = db.Column(db.String(255), nullable = False, unique = True)
   city = db.Column(db.String(20), nullable= False)
   state = db.Column(db.String(15), nullable=False)
-  avatar_img = db.Column(db.String(255))
+  avatar_img = db.Column(db.String(255), default='https://images.unsplash.com/photo-1541625810516-44f1ce894bcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjU4NTR8MHwxfHNlYXJjaHw0fHxjeWNsaXN0fGVufDB8fHx8MTYyMDE1NzM5OQ&ixlib=rb-1.2.1&q=80&w=400')
   hashed_password = db.Column(db.String(255), nullable = False)
   created_at = db.Column(db.DateTime, nullable=False,
         default=datetime.date.today())

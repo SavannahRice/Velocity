@@ -59,20 +59,54 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (username, email, password) => async (dispatch)=> {
+export const signUp = (username, email, city, state, avatar, password) => async (dispatch)=> {
+    // const formData = new FormData()
+    // formData.append('username', username)
+    // formData.append('email', email)
+    // formData.append('city', city)
+    // formData.append('state', state)
+    // formData.append('password', password)
+    // formData.append('avatar', avatar)
+
+    // if (avatar){
+    //     formData.append('avatar', avatar)
+    // }
+    
+    // for (let val of formData.values()){
+    //     console.log(val);
+    // }
+    // console.log(avatar)
+    // const fileObject = avatar
+
+    // const image = {
+    //     'lastModified'     : fileObject.lastModified,
+    //     'lastModifiedDate' : fileObject.lastModifiedDate,
+    //     'name'             : fileObject.name,
+    //     'size'             : fileObject.size,
+    //     'type'             : fileObject.type
+
+    // }
+    
     const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
+        
+        // body: formData,
         body: JSON.stringify({
             username,
             email,
+            city,
+            state,
             password,
         }),
     });
     const data = await response.json();
-    dispatch(setUser(data));
+    if (response.ok){
+
+        dispatch(setUser(data));
+    }
 }
 
 // reducer
