@@ -1,4 +1,4 @@
-# from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash
 from app.models import db, User
 from faker import Faker
 fake = Faker()
@@ -63,7 +63,7 @@ def seed_users():
                 city='Walnut Creeek',
                 state='California',
                 avatar_img='https://i.pinimg.com/736x/c4/16/43/c416433733a9a307266208014a5fc92a.jpg',
-                hashed_password='password')
+                hashed_password=generate_password_hash('password'))
 
     db.session.add(demo)
 
@@ -73,7 +73,7 @@ def seed_users():
         city=cities[random.randrange(len(cities))],
         state='California',
         avatar_img=photos[random.randrange(len(photos))],
-        hashed_password='password')
+        hashed_password=generate_password_hash('password'))
         db.session.add(user)
 
     db.session.commit()
