@@ -29,7 +29,7 @@ h2 {
     /* border: 2px solid blue; */
     display: flex;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 20px;
     
 
 
@@ -52,7 +52,7 @@ input {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .formBtn {
@@ -80,9 +80,11 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #B24592;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #F15F79, #B24592);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #F15F79, #B24592); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #B24592;  
+    background: -webkit-linear-gradient(to right, #F15F79, #B24592);  
+    background: linear-gradient(to right, #F15F79, #B24592); 
+    
+
 }
 
 img {
@@ -107,3 +109,23 @@ img {
     color: gray;
 }
 
+.fileUpload::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+
+.fileUpload::before {
+    content: 'Add profile picture';
+    display: inline-block;
+    background: white;
+    /* border: 1px solid #999; */
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 200;
+    font-size: 10pt;
+  }

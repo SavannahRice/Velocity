@@ -65,6 +65,9 @@ const LoginForm = () => {
             <button type="submit" className={styles.formBtn}>Login</button>
             <button className={styles.formBtn}>Sign Up</button>
           </div>
+          <div className={styles.terms}>
+            <p>By signing up, you agree to Velocity's Terms and Conditions & Privacy Policy. </p>
+          </div>
         </form>
       </div>
       <div className={styles.rightSide}><img src={photo} alt=""/></div>
