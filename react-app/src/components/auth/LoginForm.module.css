@@ -85,11 +85,11 @@ input {
     background: linear-gradient(to right, #F15F79, #B24592); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-img {
+/* img {
     width: 100%;
     
     
-}
+} */
 
 .errors {
     /* border: 2px solid red; */

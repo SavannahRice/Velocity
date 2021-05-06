@@ -62,7 +62,7 @@ class User(db.Model, UserMixin):
       "avatar_img": self.avatar_img,
       "followers": [follower.get_user() for follower in self.followers],
       "following": [follower.get_user() for follower in self.follows],
-      # "activities": [activity.to_dict() for activity in self.activities],
+      "activities": [activity.to_dict() for activity in self.activities],
       # "likes": [like.to_dict() for like in self.likes]
     }
 

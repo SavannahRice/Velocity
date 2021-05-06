@@ -117,7 +117,7 @@ const SignUpForm = () => {
                 required={true}
               ></input>
             </div>
-            <div className={styles.formInput}>
+            {/* <div className={styles.formInput}>
             <input
                 className={styles.fileUpload}
                 type="file"
@@ -125,7 +125,7 @@ const SignUpForm = () => {
                 onChange={(e) => setAvatar(e.target.files[0])}
               ></input>
 
-            </div>
+            </div> */}
             <div className={styles.btnDiv}>
                   <button type="submit" className={styles.formBtn}>Login</button>
                   <button className={styles.formBtn}>Sign Up</button>

@@ -38,17 +38,29 @@ def seed_activities():
         'Setting goals and crushing them!',
         'I have to exercise in the morning before my brain figures out what I’m doing.'
     ]
+    activity = Activity(activity_type_id=2, 
+        user_id=1,
+        gps_file_url='https://042521srtestbucket.s3-us-west-2.amazonaws.com/trailforks.geojson',
+        photo_url='https://www.coloradoski.com/sites/default/files/inline-images/Jacqueline-Thomas-TrestleBikePark-Chris-Wellhausen-05-RGB.jpg',
+        activity_description=descriptions[random.randrange(len(descriptions))],
+        duration=round(moving_data.moving_time / 1002, 1) ,
+        distance=round(moving_data.moving_distance * 0.000621371, 1),
+        avg_speed=round(moving_data.moving_distance/moving_data.moving_time, 1),
+        max_speed=round(moving_data.max_speed, 1),
+        ascent_feet=400,
+        descent_feet=375)
+    db.session.add(activity)
 
     for activity in range(50):
         new_activity = Activity(activity_type_id=2, 
         user_id=random.randrange(1, num_users),
-        gps_file_url='https://042521srtestbucket.s3-us-west-2.amazonaws.com/trailforks.gpx',
+        gps_file_url='https://042521srtestbucket.s3-us-west-2.amazonaws.com/trailforks.geojson',
         photo_url='https://www.coloradoski.com/sites/default/files/inline-images/Jacqueline-Thomas-TrestleBikePark-Chris-Wellhausen-05-RGB.jpg',
         activity_description=descriptions[random.randrange(len(descriptions))],
-        duration=moving_data.moving_time / 1002 ,
-        distance=moving_data.moving_distance * 0.000621371,
-        avg_speed=moving_data.moving_distance/moving_data.moving_time,
-        max_speed=moving_data.max_speed,
+        duration=round(moving_data.moving_time / 1002, 1) ,
+        distance=round(moving_data.moving_distance * 0.000621371, 1),
+        avg_speed=round(moving_data.moving_distance/moving_data.moving_time, 1),
+        max_speed=round(moving_data.max_speed, 1),
         ascent_feet=400,
         descent_feet=375
         )

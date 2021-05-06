@@ -1,0 +1,26 @@
+.logo {
+    width: 200px;
+    margin-left: 30px;
+}
+
+.sideNav {
+    /* border: 2px solid black; */
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: space-between;
+    margin-top: 25px;
+
+}
+
+.active {
+    /* border: 2px solid black; */
+    width: 200px;
+    background-color: rgb(255, 75, 107);
+    color: white;
+    padding-right: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 0 5px 5px 0;
+
+}
