@@ -10,6 +10,7 @@ class Likes(db.Model):
     activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'), nullable=False)
 
     # user_likes = db.relationship('User', backref='likes')
+    activity = db.relationship('Activity', back_populates='likes')
 
     def to_dict(self):
         return {

@@ -25,7 +25,7 @@ class User(db.Model, UserMixin):
   updated_at = db.Column(db.DateTime, nullable=False,
         default=datetime.date.today())
 
-  activities = db.relationship('Activity', backref='user_activities')
+  activities = db.relationship('Activity', back_populates='user_activities')
   likes = db.relationship('Likes', backref='user_likes')
 
   followers = db.relationship(
@@ -68,6 +68,8 @@ class User(db.Model, UserMixin):
 
   def get_user(self):
         return {
+            "user_id": self.id,
             "username": self.username,
             "avatar_img": self.avatar_img,
+            
         }

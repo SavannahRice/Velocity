@@ -23,8 +23,9 @@ class Activity(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False,
         default=datetime.date.today())
     
-    # user_activities = db.relationship('User', backref='activities')
+    user_activities = db.relationship('User', back_populates='activities')
     activity_type = db.relationship('Activity_Type', backref='activity')
+    likes = db.relationship('Likes', back_populates='activity')
 
     def to_dict(self):
         return {
@@ -39,5 +40,7 @@ class Activity(db.Model):
             "max_speed": self.max_speed,
             "ascent_feet": self.ascent_feet,
             "descent_feet": self.descent_feet,
-            "activity_type": self.activity_type.to_dict()
+            "activity_type": self.activity_type.to_dict(),
+            "user": self.user_activities.get_user(),
+            "likes": [like.to_dict() for like in self.likes]
         }

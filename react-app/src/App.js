@@ -10,6 +10,7 @@ import User from "./components/User";
 import Dashboard from './components/Dashboard';
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
+import FriendsActivities from "./components/FriendsActivities/FriendsActivities"
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -45,6 +46,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           <Dashboard />
+        </ProtectedRoute>
+        <ProtectedRoute path="/feed" exact={true}>
+          <FriendsActivities/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
