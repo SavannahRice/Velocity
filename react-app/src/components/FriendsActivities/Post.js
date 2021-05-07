@@ -1,13 +1,12 @@
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+
 import React, { useState, useEffect } from "react";
 import  { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import styles from './FriendsActivities.module.css'
 import {getFollowingActivities, likeActivity, unlikeActivity,  getSingleActivity} from '../../store/activity'
-
+import {getUser} from '../../store/session'
 
 function SinglePost (activity) {
+    
     const singleactivity = activity.activity
     const user = useSelector(state => state.session.user);
     
@@ -29,9 +28,11 @@ function SinglePost (activity) {
     if (userIdArr.includes(userId)){
         console.log('set is liked')
         isLiked = true
-        setUserLiked(true)
+        // setUserLiked(true)
         
     }
+
+    console.log('Here is the activity', activity.activity)
 
     
 
@@ -45,23 +46,23 @@ function SinglePost (activity) {
     const handleLike = () => {
          dispatch(likeActivity(activityId))
          setUserLiked(true)
-        //  isLiked = true
-         dispatch(getSingleActivity(activity.activity.id))
+         isLiked = userLiked
+         dispatch(getUser(userId))
        
     }
 
     const handleUnlike = () => {
         dispatch(unlikeActivity(activityId))
         setUserLiked(false)
-        //  isLiked = false
-         dispatch(getSingleActivity(activity.activity.id))
+        isLiked = userLiked
+        dispatch(getUser(userId))
     }
 
 
     const displayLikes = (activity) => {
         const likes = activity.likes
         const numLikes = likes.length
-        
+        // if (isLiked) setUserLiked(true)
 
         if (isLiked){
             return <div value={activityId}><i class="fas fa-heart" onClick={handleUnlike} onMouseOver={() => setActivityId(activity.id)} value={activityId}></i><span>{numLikes} likes</span></div>
@@ -69,33 +70,17 @@ function SinglePost (activity) {
             return <div ><i class="far fa-heart" onClick={handleLike} onMouseOver={() => setActivityId(activity.id)} value={activityId}></i><span>{numLikes} likes</span></div>
         }
 
-        
-        
-
-        // for (let i = 0; i < likes.length; i++){
-        //     if (likes[i].user_id === userId){
-        //         // setUserLiked(true)
-        //         // return (
-        //         //     <div value={activityId}><i class="fas fa-heart" onClick={handleUnlike} onMouseOver={() => setLikeId(activity.likes[i].id)} value={activityId}></i><span>{numLikes} likes</span></div>
-        //         // )
-        //     }
-        // }
-        
-        // return (
-            
-        //     <div ><i class="far fa-heart" onClick={handleLike} onMouseOver={() => setActivityId(activity.id)} value={activityId}></i><span>{numLikes} likes</span></div>
-        // )
        
     }
 
-    if (!activity) return null;
+    
 
 
     return (
         <div className={styles.middle}>
             <div className={styles.UserDiv}>
-                <img className={styles.userAvatar} src={singleactivity.user.avatar_img} alt=""/>
-                <div className={styles.username}>{singleactivity.user.username}</div>
+                {/* <img className={styles.userAvatar} src={singleactivity.user.avatar_img} alt=""/>
+                <div className={styles.username}>{singleactivity.user.username}</div> */}
             </div>
             <div><img  className={styles.activityPhoto} src={singleactivity.photo_url} alt=""/></div>
             <div>{displayLikes(singleactivity)}</div>

@@ -58,6 +58,12 @@ export const logout = () => async (dispatch) => {
     dispatch(removeUser());
 };
 
+export const getUser = (id) => async (dispatch) => {
+    const response = await fetch(`api/users/${id}`)
+    const data = await response.json();
+    dispatch(setUser(data))
+}
+
 
 export const signUp = (username, email, city, state, avatar, password) => async (dispatch)=> {
     // const formData = new FormData()

@@ -71,5 +71,6 @@ class User(db.Model, UserMixin):
             "user_id": self.id,
             "username": self.username,
             "avatar_img": self.avatar_img,
+            "activities": [activity.to_dict() for activity in self.activities]
             
         }

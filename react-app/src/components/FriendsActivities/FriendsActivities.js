@@ -21,22 +21,39 @@ function FriendsActivities () {
     const [activityId, setActivityId] = useState()
     const [likeId, setLikeId] = useState(false)
 
-    const followingUsers = []
-    following.forEach((follow) => {
-        followingUsers.push(follow.user_id)
-    })
+    // const followingUsers = []
+    // following.forEach((follow) => {
+    //     followingUsers.push(follow.user_id)
+    // })
 
-    useEffect(() => {
-        dispatch(getFollowingActivities(followingUsers))
-        // dispatch(getLikes())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getFollowingActivities(followingUsers))
+    //     // dispatch(getLikes())
+    // }, [dispatch])
+
+    // console.log('here is following', following[0].activities)
+    const newObj = {}
+    const newArr = []
 
     
     
-    
-    
+    following.map((activityArr) => {
+        // console.log(activityArr.activities)
+        for (let i = 0; i < activityArr.activities.length; i++){
+            let current = activityArr.activities[i]
+            newArr.push(current)
+        }
+    } )
 
-    if (!followingActivities) return null;
+    console.log(newArr)
+
+    // console.log(newObj)
+    // Object.values(newObj).map(activity => {
+    //     console.log(activity)
+    // })
+    //  console.log(newObj[18].activity_description)
+
+    // if (!followingActivities) return null;
 
 
     return (
@@ -45,9 +62,13 @@ function FriendsActivities () {
                 <SideNavBar/>
             </div>
             <div className={styles.friendsActivities}>
-                {Object.values(followingActivities).map(activity => (
-                   <SinglePost activity={activity} />
+                {newArr.map(activity => (
+                    <SinglePost activity={activity} />
                 ))}
+                {/* {Object.values(newObj).map(activity => (
+                    
+                   <SinglePost activity={newObj[18]} />
+                ))} */}
             </div>
         </div>
     )
