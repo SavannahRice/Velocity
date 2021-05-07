@@ -1,0 +1,48 @@
+.entirepage{
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    background-color: rgba(235, 235, 235, 0.5);
+    
+}
+
+.leftSidebar {
+    /* border: 2px solid red; */
+    flex-basis: 15%;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.formDiv {
+    margin-left: 50px;
+
+}
+
+.container {
+    position: relative;
+    text-align:center;
+    color: white;
+    /* border: 2px solid black; */
+    height: 680px;
+    width: 450px;
+    margin: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px;
+}
+
+.runPhoto {
+    width: 100%;
+}
+
+.centeredText{
+    position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}

@@ -49,7 +49,11 @@ function Dashboard() {
     //      '/gps_files/GregsAprilTrack.geojson'
     //    );
     //   }
-
+    const getFileName = (activity) => {
+        const activityPath = activity.gps_file_url.split('/')
+        console.log(activityPath[activityPath.length-1])
+        
+    }
 
 
     return (
@@ -63,14 +67,15 @@ function Dashboard() {
                         <div><h3>Activity</h3></div>
                         <div><img className={styles.activityPhoto} src={activity.photo_url} alt=""/></div>
                         <div>{activity.activity_description}</div>
+                        {getFileName(activity)}
                         <div className={styles.stats}>
                             <span>
                                 <p>Distance</p>
-                                <p>{activity.distance}</p>
+                                <p>{activity.distance} miles</p>
                             </span>
                             <span>
                                 <p>Time</p>
-                                <p>{activity.duration}</p>
+                                <p>{activity.duration} hours</p>
                             </span>
                             <span>
                                 <p>Elevation</p>

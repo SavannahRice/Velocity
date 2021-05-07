@@ -8,6 +8,8 @@ function Following () {
     const user = useSelector(state => state.session.user)
     const following = user.following
 
+    
+
 
     return (
 

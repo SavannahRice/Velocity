@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard';
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 import FriendsActivities from "./components/FriendsActivities/FriendsActivities"
+import AddActivity from "./components/AddActivity/AddActivityForm"
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -49,6 +50,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/feed" exact={true}>
           <FriendsActivities/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/newactivity" exact={true}>
+          <AddActivity />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

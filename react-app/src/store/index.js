@@ -9,6 +9,7 @@ const rootReducer = combineReducers({
     session,
     activities,
     likes
+    
 });
 
 let enhancer;

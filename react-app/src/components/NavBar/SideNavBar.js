@@ -14,21 +14,21 @@ const SideNavBar = () => {
     return (
         <nav className={styles.sideNav}>
             <div className='navlinkDiv'>
-                <NavLink to="/" exact={true} activeClassName={styles.active}>
+                <NavLink to="/" exact={true} className={styles.notactive} activeClassName={styles.active} activeStyle={{color: "white"}}>
                     Dashboard
                 </NavLink>
             </div>
             <div className='navlinkDiv'>
-                <NavLink to="/feed" exact={true} activeClassName={styles.active}>Friends Activities</NavLink>
+                <NavLink to="/feed" exact={true} className={styles.notactive} activeClassName={styles.active} activeStyle={{color: "white"}}>Friends Activities</NavLink>
             </div>
             <div className='navlinkDiv'>
-                <NavLink to='/profile' exact={true} activeClassName={styles.active}>Profile</NavLink>
+                <NavLink to='/profile' exact={true} className={styles.notactive} activeClassName={styles.active} activeStyle={{color: "white"}}>Profile</NavLink>
             </div>
             <div className='navlinkDiv'>
-                <NavLink to='/activity' exact={true} activeClassName={styles.active}>Add Activity</NavLink>
+                <NavLink to='/newactivity' exact={true}  className={styles.notactive} activeClassName={styles.active} activeStyle={{color: "white"}}>Add Activity</NavLink>
             </div>
             <div className='navlinkDiv'>
-                <NavLink to='/discover' exact={true} activeClassName={styles.active}>Explore</NavLink>
+                <NavLink to='/discover' exact={true} className={styles.notactive} activeClassName={styles.active} activeStyle={{color: "white"}}>Explore</NavLink>
             </div>
             <div className='navlinkDiv'>
                 <LogoutButton />
