@@ -18,14 +18,14 @@ def get_all_activities():
     activities = Activity.query.filter_by(user_id=current_user.id).order_by(Activity.id.desc()).all()
     s3 = boto3.resource('s3', aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"), aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"))
     
-    # for activity in activities:
-    #     url_list = activity.gps_file_url.split('/')
-    #     file_ext = url_list[len(url_list) - 1]
-    #     obj = s3.Object('042521srtestbucket', file_ext)
-    #     gpx_file = obj.get()['Body'].read()
-    #     # gpx = gpxpy.parse(gpx_file)
-    #     # activity.gps_file_url = gpx
-    #     print('+++++++++++++++++++', gpx_file )
+    for activity in activities:
+        url_list = activity.gps_file_url.split('/')
+        file_ext = url_list[len(url_list) - 1]
+        obj = s3.Object('042521srtestbucket', file_ext)
+        gpx_file = obj.get()['Body'].read()
+        # gpx = gpxpy.parse(gpx_file)
+        # activity.gps_file_url = gpx
+        print('+++++++++++++++++++', gpx_file )
 
     return {"activities": [activity.to_dict() for activity in activities]}
 

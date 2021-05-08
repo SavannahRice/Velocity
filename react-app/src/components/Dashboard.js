@@ -8,6 +8,8 @@ import Following from './DashboardElements/following';
 import AWS from 'aws-sdk';
 import Map from './DashboardElements/map'
 import SideNavBar from '../components/NavBar/SideNavBar'
+import {getUser } from '../store/session'
+import aws from 'aws-sdk'
 
 
 
@@ -23,12 +25,7 @@ function Dashboard() {
     console.log('activities', activities)
     
     const dispatch = useDispatch()
-
-    // const s3 = new AWS.S3({
-    //     accessKeyId: 'AKIAVGTXOKARTQGQ52BB',
-    //     secretAccessKey: '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',
-    //     Bucket: '042521srtestbucket',
-    // })
+    
 
     // const obj = s3.getObject('042521srtestbucket', 'trailforks.geojson' )
     // const gpx_file = obj.get()['Body'].read()
@@ -37,6 +34,7 @@ function Dashboard() {
 
     useEffect(() => {
         dispatch(getActivities())
+        dispatch(getUser(user.id))
     }, [dispatch])
 
     // function initMap() {
@@ -49,11 +47,18 @@ function Dashboard() {
     //      '/gps_files/GregsAprilTrack.geojson'
     //    );
     //   }
-    const getFileName = (activity) => {
-        const activityPath = activity.gps_file_url.split('/')
-        console.log(activityPath[activityPath.length-1])
-        
-    }
+    // const getFileName = async (activity) => {
+    //     const activityPath = activity.gps_file_url.split('/')
+    //     console.log(activityPath[activityPath.length-1])
+    //     const params = {Bucket: '042521srtestbucket', Key: activityPath[activityPath.length-1]}
+    //     const response = await s3.getObject(params).promise()
+    //     const fileContent = response.Body.toString('utf-8');
+    //     console.log(fileContent)
+    // }
+
+    // const readFile = () => {
+
+    // }
 
 
     return (
@@ -67,7 +72,7 @@ function Dashboard() {
                         <div><h3>Activity</h3></div>
                         <div><img className={styles.activityPhoto} src={activity.photo_url} alt=""/></div>
                         <div>{activity.activity_description}</div>
-                        {getFileName(activity)}
+                        {/* {getFileName(activity)} */}
                         <div className={styles.stats}>
                             <span>
                                 <p>Distance</p>

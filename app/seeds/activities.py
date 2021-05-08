@@ -38,9 +38,26 @@ def seed_activities():
         'Setting goals and crushing them!',
         'I have to exercise in the morning before my brain figures out what I’m doing.'
     ]
+
+    photo_urls = [
+        'https://cdn.i-scmp.com/sites/default/files/styles/1200x800/public/d8/images/methode/2019/11/18/9f0e71be-075c-11ea-a68f-66ebddf9f136_image_hires_131553.jpg?itok=Ond-tbiH&v=1574054177',
+        'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/beginner-mountain-biking-1615604804.jpg?crop=1.00xw:0.753xh;0,0.171xh&resize=1200:*',
+        'https://sacredrides.com/wp-content/uploads/2020/09/LasVegasStGeorge05hero.jpg',
+        'https://i2.keller-sports.com/guide/en/2019/03/Trailrunning-vs.-urban-running-advantages-and-disadvantages-running-on-trails-and-road-runners.jpg',
+        'https://sbac.swellclubs.com/wp-content/uploads/sites/2/2019/09/Best-Trail-Runs-Santa-Barbara-1024x642.jpg.webp',
+        'https://blog.sport-conrad.com/wp-content/uploads/2018/06/header_trailrunning_rucksaecke-980x450.jpg',
+        'https://d36hbyt2dpr66x.cloudfront.net/wp-content/uploads/2017/09/HTTR_20_solo.full_.jpg',
+        'https://www.rei.com/dam/content_022717_0622_road_biking_for_beginners_lg.jpg',
+        'https://11jj3u3z9chg9d1f14sqkl13-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/Road-Bike-Moab.jpg',
+        'https://images.immediate.co.uk/production/volatile/sites/21/2020/11/Girl-Power-02-28cfda3.jpg?quality=90&resize=620,413',
+        'https://media.self.com/photos/57d8adac50778cef321a535a/master/pass/road-biking-guide-01-fiss616.jpg'
+
+    ]
+
+
     activity = Activity(activity_type_id=2, 
         user_id=1,
-        gps_file_url='https://042521srtestbucket.s3-us-west-2.amazonaws.com/trailforks.geojson',
+        gps_file_url='https://042521srtestbucket.s3-us-west-2.amazonaws.com/trailforks.gpx',
         photo_url='https://www.coloradoski.com/sites/default/files/inline-images/Jacqueline-Thomas-TrestleBikePark-Chris-Wellhausen-05-RGB.jpg',
         activity_description=descriptions[random.randrange(len(descriptions))],
         duration=round(moving_data.moving_time / 1002, 1) ,
@@ -54,8 +71,8 @@ def seed_activities():
     for activity in range(50):
         new_activity = Activity(activity_type_id=2, 
         user_id=random.randrange(1, num_users),
-        gps_file_url='https://042521srtestbucket.s3-us-west-2.amazonaws.com/trailforks.geojson',
-        photo_url='https://www.coloradoski.com/sites/default/files/inline-images/Jacqueline-Thomas-TrestleBikePark-Chris-Wellhausen-05-RGB.jpg',
+        gps_file_url='https://042521srtestbucket.s3-us-west-2.amazonaws.com/trailforks.gpx',
+        photo_url=photo_urls[random.randrange(len(photo_urls))],
         activity_description=descriptions[random.randrange(len(descriptions))],
         duration=round(moving_data.moving_time / 1002, 1) ,
         distance=round(moving_data.moving_distance * 0.000621371, 1),

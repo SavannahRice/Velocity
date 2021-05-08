@@ -1,14 +1,10 @@
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+
 import React, { useState, useEffect } from "react";
 import  { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import SideNavBar from '../NavBar/SideNavBar'
 import styles from './FriendsActivities.module.css'
-import {getFollowingActivities, likeActivity, unlikeActivity } from '../../store/activity'
-// import {getLikes} from '../../store/likes'
 import SinglePost from './Post'
-// import {getLikes} from '../../store/likes'
+
 
 function FriendsActivities () {
     const user = useSelector(state => state.session.user);

@@ -95,8 +95,8 @@ function SinglePost (activity) {
                     <p>{singleactivity.duration}</p>
                 </span>
                 <span>
-                    <p>Elevation</p>
-                    <p>600 ft</p>
+                    <p>Average Speed</p>
+                    <p>{singleactivity.avg_speed} mph</p>
                 </span>
             </div>
                             
