@@ -65,9 +65,9 @@ function SinglePost (activity) {
         // if (isLiked) setUserLiked(true)
 
         if (isLiked){
-            return <div value={activityId}><i class="fas fa-heart" onClick={handleUnlike} onMouseOver={() => setActivityId(activity.id)} value={activityId}></i><span>{numLikes} likes</span></div>
+            return <div value={activityId}><i className="fas fa-heart" onClick={handleUnlike} onMouseOver={() => setActivityId(activity.id)} value={activityId}></i><span>{numLikes} likes</span></div>
         } else {
-            return <div ><i class="far fa-heart" onClick={handleLike} onMouseOver={() => setActivityId(activity.id)} value={activityId}></i><span>{numLikes} likes</span></div>
+            return <div ><i className="far fa-heart" onClick={handleLike} onMouseOver={() => setActivityId(activity.id)} value={activityId}></i><span>{numLikes} likes</span></div>
         }
 
        
@@ -78,10 +78,10 @@ function SinglePost (activity) {
 
     return (
         <div className={styles.middle}>
-            <div className={styles.UserDiv}>
+            {/* <div className={styles.UserDiv}> */}
                 {/* <img className={styles.userAvatar} src={singleactivity.user.avatar_img} alt=""/>
                 <div className={styles.username}>{singleactivity.user.username}</div> */}
-            </div>
+            {/* </div> */}
             <div><img  className={styles.activityPhoto} src={singleactivity.photo_url} alt=""/></div>
             <div>{displayLikes(singleactivity)}</div>
             <div>{singleactivity.activity_description}</div>

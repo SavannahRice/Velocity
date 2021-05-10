@@ -12,6 +12,7 @@ import Dashboard from './components/Dashboard';
 import { authenticate } from "./store/session";
 import FriendsActivities from "./components/FriendsActivities/FriendsActivities"
 import AddActivity from "./components/AddActivity/AddActivityForm"
+import Map from "./components/DashboardElements/ActivityMap"
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -54,6 +55,10 @@ function App() {
         <ProtectedRoute path="/newactivity" exact={true}>
           <AddActivity />
         </ProtectedRoute>
+        <ProtectedRoute path="/map" exact={true}>
+          <Map exact={true}/>
+        </ProtectedRoute>
+
       </Switch>
     </BrowserRouter>
   );

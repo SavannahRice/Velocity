@@ -2,30 +2,58 @@
     width: 100%;
     height: 400vh;
     display: flex;
-    background-color: rgba(235, 235, 235, 0.5);
-}
-
-
-.rightSidebar {
-    flex-basis: 30%;
-    text-align: center;
+    /* background-color: rgba(235, 235, 235, 0.5); */
+    /* background: #ee9ca7;   */
+    /* background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  */
+    /* background: linear-gradient(to right, #ffdde1, #ee9ca7);  */
+    border-radius: 5px;
+    background: #f2709c;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #ff9472, rgb(255, 75, 107));  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #ff9472, rgb(255, 75, 107)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
 }
 
+.rightSidebar
+
+{
+    flex-basis: 20%;
+    text-align: center;
+    margin: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px;
+    
+
+}
+
+.leftSidebar {
+    
+    width: 200px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px; */
+    margin-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24)  4px 0px -2px;
+}
+
+
+
 .middleBar {
-    flex-basis: 50%;
+    flex-basis: 60%;
     margin-left: 20px;
 }
 
 .middle {
-    height: 400px;
+    height: 520px;
     margin: 20px 10px;
     text-align: center;
     background-color: white;
     border-radius: 5px;
     display: flex;
-    flex-direction: column; 
+    flex-wrap: wrap;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px;
+    justify-content: space-around;
     
 }
 
@@ -35,17 +63,7 @@
     margin: 5px;
 }
 
-.left {
-    height: 350px;
-    margin: 20px;
-    text-align: center;
-    background-color: white;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px;
 
-}
 
 #map{
     height: 100%;
@@ -71,26 +89,34 @@ h3 {
 }
 
 .activityPhoto{
-    height: 220px;
+    height: 240px;
     width: auto;
+    border-radius: 5px;
 
 }
 
-.rightSidebar {
+
+
+
+
+.mapDiv {
+    flex-basis: 50%;
     
-    margin: 20px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px;
 
 }
 
-.leftSidebar {
-    /* border: 2px solid red; */
-    flex-basis: 15%;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px;
+.photoAndDescriptionDiv {
+    flex-basis: 50%;
+
+}
+
+.profileHeader {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    border-radius: 5px;
+    padding: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1.4px solid rgba(255, 75, 107, 0.2);
+    font-weight: bold;
+    font-size: 18px;
 }

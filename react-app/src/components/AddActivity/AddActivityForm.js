@@ -64,14 +64,23 @@ function AddActivity () {
                 <h2 className={styles.centeredText}>What did you do today?</h2>
             </div>
             <div className={styles.formDiv}>
-                <form onSubmit={handleSubmit}>
+                <form id={styles.activityForm} onSubmit={handleSubmit}><h2>Add an Activity!</h2>
+                    <p>Describe your activity!</p>
                     <input 
                     type="text"
                     name="description"
-                    placeholder="Descripion"
+                    // placeholder="Descripion"
                     onChange={updateDescription}
                     value={description}
                     ></input>
+                    <div><p>Select an Actity Type!</p>
+                        <select>
+                            <option value="">Road Biking</option>
+                            <option value="">Mountain Biking</option>
+                            <option value="">Running</option>
+                            <option value="">Trail Running</option>
+                        </select>
+                    </div>
                     <div><p>Add GPS File here!</p>
                         <input type="file"
                         onChange={updateGpx}

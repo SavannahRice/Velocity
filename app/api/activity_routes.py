@@ -16,17 +16,25 @@ activity_routes = Blueprint('activities', __name__)
 @login_required
 def get_all_activities():
     activities = Activity.query.filter_by(user_id=current_user.id).order_by(Activity.id.desc()).all()
-    s3 = boto3.resource('s3', aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"), aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"))
+    # s3 = boto3.resource('s3', aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"), aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"))
     
-    for activity in activities:
-        url_list = activity.gps_file_url.split('/')
-        file_ext = url_list[len(url_list) - 1]
-        obj = s3.Object('042521srtestbucket', file_ext)
-        gpx_file = obj.get()['Body'].read()
-        # gpx = gpxpy.parse(gpx_file)
-        # activity.gps_file_url = gpx
-        print('+++++++++++++++++++', gpx_file )
-
+    # allTracksArr = []
+    # for activity in activities:
+    #     singleActivity = []
+    #     url_list = activity.gps_file_url.split('/')
+    #     file_ext = url_list[len(url_list) - 1]
+    #     obj = s3.Object('042521srtestbucket', file_ext)
+    #     gpx_file = obj.get()['Body'].read()
+    #     gpx = gpxpy.parse(gpx_file)
+    #     # activity.gps_file_url = gpx
+    #     for track in gpx.tracks:
+    #         for segment in track.segments:
+    #             for point in segment.points:
+    #                 singleActivity.append([point.latitude, point.longitude])
+    #                 # print('Point at ({0},{1}) -> {2}'.format(point.latitude, point.longitude, point.elevation))
+    #     allTracksArr.append(singleActivity)
+    # print('LOOP DONE ++++++++++++++++++++++++++++', allTracksArr)
+        
     return {"activities": [activity.to_dict() for activity in activities]}
 
 @activity_routes.route('/following/<int:id>')
@@ -70,7 +78,25 @@ def get_activity_likes():
 def get_single_activity(id):
     activity = Activity.query.get(id)
 
-    return {"activity": activity.to_dict()}
+    s3 = boto3.resource('s3', aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"), aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"))
+    
+    # allTracksArr = []
+    
+    singleActivity = []
+    url_list = activity.gps_file_url.split('/')
+    file_ext = url_list[len(url_list) - 1]
+    obj = s3.Object('042521srtestbucket', file_ext)
+    gpx_file = obj.get()['Body'].read()
+    gpx = gpxpy.parse(gpx_file)
+    # activity.gps_file_url = gpx
+    for track in gpx.tracks:
+        for segment in track.segments:
+            for point in segment.points:
+                singleActivity.append([point.latitude, point.longitude])
+                    # print('Point at ({0},{1}) -> {2}'.format(point.latitude, point.longitude, point.elevation))
+        # allTracksArr.append(singleActivity)
+
+    return {"activity": activity.to_dict(), "track": singleActivity}
 
 @activity_routes.route('/new', methods=["POST"])
 @login_required

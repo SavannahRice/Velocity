@@ -1,15 +1,16 @@
 .logo {
     width: 200px;
-    margin-left: 30px;
+    margin-left: 0px;
 }
 
 .sideNav {
-    /* border: 2px solid black; */
+    
     display: flex;
     flex-direction: column;
     height: 50vh;
     justify-content: space-between;
     margin-top: 25px;
+    box-shadow: none;
 
 }
 
@@ -29,5 +30,15 @@
 .notactive {
     text-decoration: none;
     color: rgb(255, 75, 107);
+    margin-left: 5px;
+}
+
+button {
+    
+    color: rgb(255, 75, 107);
+    background-color: white;
+    outline: none;
+    border: none;
+    font-size: 18px;
 }
 

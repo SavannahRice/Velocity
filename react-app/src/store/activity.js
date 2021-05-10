@@ -33,8 +33,10 @@ export const getActivities = () => async (dispatch) => {
     if (response.ok){
         const activities = await response.json();
         dispatch(setActivities(activities))
-        return activities
+        // console.log(activities)
+        return activities;
     }
+    
 }
 
 export const getSingleActivity = (activityId) => async (dispatch) => {
