@@ -26,19 +26,19 @@ function SinglePost (activity) {
 
 
     if (userIdArr.includes(userId)){
-        console.log('set is liked')
+        
         isLiked = true
         // setUserLiked(true)
         
     }
 
-    console.log('Here is the activity', activity.activity)
+    
 
     
 
     useEffect(() => {
         isLiked = userLiked
-        console.log('useEffect', userLiked)
+        
         // dispatch(getSingleActivity(activity.activity.id))
     }, [dispatch, userLiked])
 

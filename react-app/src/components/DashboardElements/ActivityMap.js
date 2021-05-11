@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import  { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import './ActivityMap.css'
 
 
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
@@ -10,7 +11,7 @@ function Map (id) {
     const [activityTrack, setActivityTrack] = useState(null)
     const blackOptions = { color: '#4b6cff' }
     const activityId = id.id
-    console.log('Here is the id', id.id)
+    
     
     const get_activity = async (e) => {
         const activity = await fetch(`api/activities/${activityId}`)
@@ -32,7 +33,7 @@ function Map (id) {
     if (activityTrack){
         let middleIndex = Math.floor(activityTrack.length/2)
         let center = activityTrack[middleIndex]
-        console.log(center)
+        
 
         return (
             <div>

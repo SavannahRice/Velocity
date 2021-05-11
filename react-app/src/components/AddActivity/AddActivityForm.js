@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import SideNavBar from "../NavBar/SideNavBar"
 import styles from "./AddActivity.module.css"
 import photo from "./laurine-bailly.jpg"
+import { Modal } from '../context/Modal'
 
 function AddActivity () {
     const history = useHistory()
@@ -12,6 +13,8 @@ function AddActivity () {
     const [gpx, setGpx] = useState(null)
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false)
+    const [showModal, setShowModal] = useState(false);
+    
 
 
     const updateDescription = (e) => {
@@ -45,6 +48,7 @@ function AddActivity () {
         if (res.ok){
             await res.json()
             setImageLoading(false)
+            
             history.push('/');
         }
         else {
@@ -55,7 +59,52 @@ function AddActivity () {
     
 
     return (
-        <div className={styles.entirepage}>
+        
+            <Modal onClose={() => setShowModal(false)}>
+                <div className={styles.formDiv}><p className={styles.activityTitle}>Add an Activity</p>
+                    <form id={styles.activityForm} onSubmit={handleSubmit}>
+                        <p>Activity Description</p>
+                        <input
+                        type="text"
+                        name="description"
+                        // placeholder="Descripion"
+                        onChange={updateDescription}
+                        value={description}
+                        ></input>
+                        <div><p>Select an Actity Type</p>
+                            <select>
+                                <option value="">Road Biking</option>
+                                <option value="">Mountain Biking</option>
+                                <option value="">Running</option>
+                                <option value="">Trail Running</option>
+                            </select>
+                        </div>
+                        <div><p>Add GPS File here</p>
+                            <input type="file"
+                            onChange={updateGpx}
+                            />
+                        </div>
+                        <div><p>Add Image here</p>
+                            <input
+                            type="file"
+                            accept="image/*"
+                            onChange={updateImage}
+                            />
+                        </div>
+                        <button className={styles.addActivityBtn} type="submit">Submit</button>
+                        {(imageLoading) && <p>Loading...</p>}
+                    </form>
+                </div>
+            </Modal>
+        
+    )
+
+
+}
+
+export default AddActivity
+
+{/* <div className={styles.entirepage}>
             <div className={styles.leftSidebar}>
                 <SideNavBar/>
             </div>
@@ -98,10 +147,4 @@ function AddActivity () {
                 </form>
 
             </div>
-        </div>
-    )
-
-
-}
-
-export default AddActivity
+        </div> */}

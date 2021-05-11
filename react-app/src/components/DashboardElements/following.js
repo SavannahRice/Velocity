@@ -2,12 +2,17 @@ import React, { useState, useEffect } from "react";
 import  { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styles from '../Dashboard.module.css'
+import SingleUser from "../IndividualUser"
 
 
 function Following () {
     const user = useSelector(state => state.session.user)
     const following = user.following
+    const [showModal, setShowModal] = useState(false)
 
+    const showUser = () => {
+        setShowModal(!showModal)
+    }
     
 
 
@@ -16,10 +21,16 @@ function Following () {
         <div className='mainFollowingDiv'>
             {
                 following.map(user => (
-                    <div className={styles.follower}>
-                        <span><a href=""><img src={user.avatar_img} className={styles.avatarImg} alt=""/></a></span>
+                    <>
+                    <div className={styles.follower}  onClick={showUser} value={user}>
+                        <span><img src={user.avatar_img}  className={styles.avatarImg} alt=""/></span>
                         <a href=""><span>{user.username}</span></a>
+                        {/* {showModal && (
+                        <SingleUser user={user}/>
+                    )} */}
                     </div>
+                    </>
+                    
                 ))
             }
         </div>

@@ -119,4 +119,20 @@ h3 {
     border-bottom: 1.4px solid rgba(255, 75, 107, 0.2);
     font-weight: bold;
     font-size: 18px;
+    justify-content: space-between;
 }
+
+.headerDiv {
+    
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    width: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .fas {
+    margin: 10px;
+    width:100px;
+} */

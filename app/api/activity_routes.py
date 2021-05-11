@@ -93,8 +93,7 @@ def get_single_activity(id):
         for segment in track.segments:
             for point in segment.points:
                 singleActivity.append([point.latitude, point.longitude])
-                    # print('Point at ({0},{1}) -> {2}'.format(point.latitude, point.longitude, point.elevation))
-        # allTracksArr.append(singleActivity)
+                    
 
     return {"activity": activity.to_dict(), "track": singleActivity}
 
@@ -161,7 +160,31 @@ def add_single_activity():
     db.session.commit()
     return {"url": url}
 
+
+@activity_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
+def delete_single_activity(id):
+    activity = Activity.query.get(id)
+    likes = Likes.query.filter_by(activity_id=id).all()
+
+    for like in likes:
+        db.session.delete(like)
+
+    db.session.delete(activity)
+    db.session.commit()
+    return {"delete": "Post deleted"}
     
+@activity_routes.route('/<int:id>', methods=["PATCH"])
+@login_required
+def edit_single_activity(id):
+    activity_description = request.form['description']
+    activity = Activity.query.get(id)
+
+    activity.activity_description = activity_description
+
+    db.session.commit()
+    return {"success": "edited"}
+
     
 
 

@@ -7,6 +7,7 @@ import SideNavBar from '../components/NavBar/SideNavBar'
 import {getUser } from '../store/session'
 import Map from './DashboardElements/ActivityMap'
 import SinglePost from './FriendsActivities/Post'
+import { Modal } from '../components/context/Modal'
 
 
 
@@ -18,6 +19,61 @@ function Dashboard() {
     const activities = user.activities
     // const gps_url = user.activities[0].gps_file_url
     const dispatch = useDispatch()
+    const [activityId, setActivityId] = useState()
+    const [showModal, setShowModal] = useState(false);
+    const [description, setDescription] = useState('')
+    const [newDescription, setNewDescription] = useState('')
+    const [formUpdate, setFormUpdate] = useState(false)
+
+    const handleDelete = async (e) => {
+        const post = Object.values(e.target)[1]
+        console.log(post)
+        console.log('inside handle delete')
+        await fetch(`api/activities/${activityId}`, {
+            method: "DELETE"
+        })
+        return dispatch(getUser(user.id))
+
+    }
+
+    const handleEdit = async (e) => {
+        setShowModal(true)
+        console.log(showModal)
+        const post = Object.values(e.target)[1].value
+        setDescription(post.activity_description)
+
+    }
+
+    const updateDescription = (e) => {
+        setNewDescription(e.target.value)
+    }
+
+    const handleSumbit = async (e) => {
+        e.preventDefault()
+        const id = Object.values(e.target)[1].value
+        console.log(id)
+        const formData = new FormData()
+        formData.append('description', newDescription)
+
+        setFormUpdate(true)
+
+        const res = await fetch(`/api/activities/${id}`, {
+            method: "PATCH",
+            body: formData
+        })
+
+        if (res.ok){
+            await res.json()
+            setFormUpdate(false)
+            setShowModal(false)
+            return dispatch(getUser(user.id))
+        }
+    }
+
+    useEffect(() => {
+        dispatch(getUser(user.id))
+    }, [dispatch])
+
     
 
     return (
@@ -29,43 +85,38 @@ function Dashboard() {
                 {activities.map(activity => (
                     <div className={styles.middle}>
                         <div className={styles.profileHeader}>
-                            <img className={styles.avatarImg} src={user.avatar_img} alt=""/><p>{user.username}</p>
+                            <div className={styles.headerDiv}><img className={styles.avatarImg} src={user.avatar_img} alt=""/><p>{user.username}</p></div>
+                            <div className={styles.headerDiv}><i className="fas fa-edit" value={activity} onMouseOver={() => setActivityId(activity.id)} onClick={handleEdit} ></i><i className="fas fa-trash-alt"  value={activity.id} onMouseOver={() => setActivityId(activity.id)} onClick={handleDelete}></i></div>
                         </div>
                         <div className={styles.mapDiv}><Map id={activity.id}/></div>
                         <SinglePost activity={activity} />
+                        {showModal && (
+                            <Modal onClose={() => setShowModal(false)}>
+                                <div>
+                                    <form action="" onSubmit={handleSumbit} value={activity.id}><h2>Edit Activity</h2>
+                                        <input 
+                                        type="text"
+                                        name="description"
+                                        placeholder={description}
+                                        onChange={updateDescription}
+                                        value={newDescription}
+                                        ></input>
+                                        <button type="submit" value={activity.id}>Submit</button>
+                                        
+                                    </form>
+                                </div>
+                            </Modal>
+                                
+                        )}
+                        
                     </div>
 
-                    // <div className={styles.middle}>
-                    //     <div className={styles.profileHeader}>
-                    //         <img className={styles.avatarImg} src={user.avatar_img} alt=""/><p>{user.username}</p>
-                    //     </div>
-                    //     <div className={styles.mapDiv}><Map id={activity.id}/></div>
-                    //     <div className={styles.photoAndDescriptionDiv}>
-                    //         <img className={styles.activityPhoto} src={activity.photo_url} alt=""/>
-                    //         <div>{activity.activity_description}</div>
-                            
-                    //         <div className={styles.stats}>
-                    //             <span>
-                    //                 <p>Distance</p>
-                    //                 <p>{activity.distance} miles</p>
-                    //             </span>
-                    //             <span>
-                    //                 <p>Time</p>
-                    //                 <p>{activity.duration} hours</p>
-                    //             </span>
-                    //             <span>
-                    //                 <p>Elevation</p>
-                    //                 <p>600 ft</p>
-                    //             </span>
-                            
-                    //         </div>
-                    //     </div>
-                    // </div>
                 ))}
             </div>
             <div className={styles.rightSidebar}><h3>Your Friends</h3>
                 <Following/>
             </div>
+            
             
         </div>
 
