@@ -58,6 +58,7 @@ function App() {
         <ProtectedRoute path="/map" exact={true}>
           <Map exact={true}/>
         </ProtectedRoute>
+        
 
       </Switch>
     </BrowserRouter>

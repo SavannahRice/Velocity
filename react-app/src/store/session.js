@@ -1,6 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+// const ALL_USERS = "session/ALL_USERS"
 
 const setUser = (user) => ({
     type: SET_USER,
@@ -10,6 +11,11 @@ const setUser = (user) => ({
 const removeUser = () => ({
     type: REMOVE_USER
 })
+
+// const allUsers = () => ({
+//     type: ALL_USERS,
+//     payload: users
+// })
 
 
 
@@ -64,34 +70,17 @@ export const getUser = (id) => async (dispatch) => {
     dispatch(setUser(data))
 }
 
+// export const getAllUsers = () => async (dispatch) => {
+//     const response = await fetch(`api/users/`)
+//     if (response.ok){
+//         const data = await response.json();
+//         dispatch(allUsers)
+//     }
+// }
+
 
 export const signUp = (username, email, city, state, avatar, password) => async (dispatch)=> {
-    // const formData = new FormData()
-    // formData.append('username', username)
-    // formData.append('email', email)
-    // formData.append('city', city)
-    // formData.append('state', state)
-    // formData.append('password', password)
-    // formData.append('avatar', avatar)
-
-    // if (avatar){
-    //     formData.append('avatar', avatar)
-    // }
     
-    // for (let val of formData.values()){
-    //     console.log(val);
-    // }
-    // console.log(avatar)
-    // const fileObject = avatar
-
-    // const image = {
-    //     'lastModified'     : fileObject.lastModified,
-    //     'lastModifiedDate' : fileObject.lastModifiedDate,
-    //     'name'             : fileObject.name,
-    //     'size'             : fileObject.size,
-    //     'type'             : fileObject.type
-
-    // }
     
     const response = await fetch("/api/auth/signup", {
         method: "POST",
@@ -117,7 +106,7 @@ export const signUp = (username, email, city, state, avatar, password) => async 
 
 // reducer
 
-const initialState = { user: null };
+const initialState = { user: null};
 
 // useSelector(state => state.session.user)
 
@@ -127,6 +116,14 @@ export default function reducer(state = initialState, action) {
             return { user: action.payload };
         case REMOVE_USER:
             return { user: null };
+        // case ALL_USERS:
+        //     const users = action.payload.users;
+        //     const allDBUsers = {}
+        //     for (const user of users){
+        //         allDBUsers[user.id] = user
+        //     }
+        //     return {...state, allUsers: allDBUsers}
+
         default:
             return state;
     }
