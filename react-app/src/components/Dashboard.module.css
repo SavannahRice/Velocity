@@ -70,13 +70,7 @@
     border: 2px solid black;
 }
 
-.avatarImg {
-    display: inline;
-  margin: 0 auto;
-  /* margin-left: -25%;  */
-  height: 100%;
-  width: auto;
-}
+
 
 .follower {
     display: flex;
@@ -158,11 +152,27 @@ h3 {
 }
 
 .imageCropper {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
-    background-color: gray;
+    margin: 10px;
+    
 }
 
+.avatarImg {
+    display: inline;
+  margin: 0 auto;
+  /* margin-left: -25%;  */
+  height: 100%;
+  width: auto;
+}
+
+.header {
+    
+    width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

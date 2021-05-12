@@ -20,6 +20,15 @@ const LoginForm = () => {
     }
   };
 
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data.errors) {
+      setErrors(data.errors);
+    }
+
+  }
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -63,7 +72,7 @@ const LoginForm = () => {
           </div>
           <div className={styles.btnDiv}>
             <button type="submit" className={styles.formBtn}>Login</button>
-            <button className={styles.formBtn}>Sign Up</button>
+            <button className={styles.formBtn} onClick={demoLogin}>Demo</button>
           </div>
           <div className={styles.terms}>
             <p>By signing up, you agree to Velocity's Terms and Conditions & Privacy Policy. </p>
