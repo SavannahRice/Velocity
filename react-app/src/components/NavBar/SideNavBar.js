@@ -14,8 +14,10 @@ const SideNavBar = () => {
     const [showAddForm, setShowAddForm] = useState(false);
 
     const handleAddActivity = async (e) => {
-        setShowModal(!showModal)
-        console.log(showModal)
+        console.log('click event triggered')
+        
+        setShowModal(true)
+        
     }
 
     
@@ -25,24 +27,24 @@ const SideNavBar = () => {
     return (
         <nav className={styles.sideNav}>
             <div className='navlinkDiv'>
-                <NavLink to="/" exact={true} className={styles.notactive} activeClassName={styles.active} activeStyle={{color: "white"}}>
+                <NavLink to="/" exact={true} className={styles.notactive} activeClassName={styles.active} >
                     Dashboard
                 </NavLink>
             </div>
             <div className='navlinkDiv'>
-                <NavLink to="/feed" exact={true} className={styles.notactive} activeClassName={styles.active} activeStyle={{color: "white"}}>Friends Activities</NavLink>
+                <NavLink to="/feed" exact={true} className={styles.notactive} activeClassName={styles.active} >Friends Activities</NavLink>
             </div>
             <div className='navlinkDiv'>
-                <NavLink to='/profile' exact={true} className={styles.notactive} activeClassName={styles.active} activeStyle={{color: "white"}}>Profile</NavLink>
+                <NavLink to='/profile' exact={true} className={styles.notactive} activeClassName={styles.active} >Edit Profile</NavLink>
             </div>
-            <button className='navlinkDiv' onClick={handleAddActivity}>Add Activity
+            <button className={styles.addActivityBtn} onClick={handleAddActivity}>+ Add Activity
                 {showModal && (
                             <AddActivity />
                 )}
             </button>
-            <div className='navlinkDiv'>
+            {/* <div className='navlinkDiv'>
                 <NavLink to='/discover' exact={true} className={styles.notactive} activeClassName={styles.active} activeStyle={{color: "white"}}>Explore</NavLink>
-            </div>
+            </div> */}
             <div className='navlinkDiv'>
                 <LogoutButton />
             </div>

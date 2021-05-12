@@ -2,25 +2,22 @@ import React, { useState, useEffect } from "react";
 import  { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import './ActivityMap.css'
-
-
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 
 function Map (id) {
 
     const [activityTrack, setActivityTrack] = useState(null)
-    const blackOptions = { color: '#4b6cff' }
+    const blueOptions = { color: '#4b6cff' }
     const activityId = id.id
     
-    
+    // Retrieves a single activity from the backend. After the activity is successfully retrieved, 
+    // the track is set with the useState hook. 
     const get_activity = async (e) => {
         const activity = await fetch(`api/activities/${activityId}`)
 
         if (activity.ok){
             const track = await activity.json()
             setActivityTrack(track.track)
-            
-
         }
     }
 
@@ -28,8 +25,8 @@ function Map (id) {
         get_activity()
     }, [])
 
-    // console.log(activityTrack.length)
-
+    // This calculates the middle index from the array of [latitude, longitude] subarray retrieved
+    // from the backend and sets the middle index as the center point of the map. 
     if (activityTrack){
         let middleIndex = Math.floor(activityTrack.length/2)
         let center = activityTrack[middleIndex]
@@ -43,15 +40,13 @@ function Map (id) {
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    <Polyline pathOptions={blackOptions} positions={activityTrack}/>
+                    <Polyline pathOptions={blueOptions} positions={activityTrack}/>
                 </MapContainer>
             </div>
-
         )
     }
 
     if (!activityTrack) return null;
-
 
 }
 

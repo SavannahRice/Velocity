@@ -40,12 +40,9 @@ def get_all_activities():
 @activity_routes.route('/following/<int:id>')
 @login_required
 def get_followingActivities(id):
-    print("Made it to route ++++++++++++++++++++++++++++++", id)
     activities = Activity.query.filter_by(user_id=id)
     return {"activities": [activity.to_dict() for activity in activities]}
 
-    # data = request.json
-    # print(data)
     
 @activity_routes.route('/like/<int:id>', methods=["POST"])
 @login_required
@@ -69,26 +66,32 @@ def unlike_single_activity(id):
 @activity_routes.route('/likes')
 @login_required
 def get_activity_likes():
-   
     likes = Likes.query.filter_by(user_id=current_user.id)
     return {"likes": [like.to_dict() for like in likes]}
 
 @activity_routes.route('/<int:id>')
 @login_required
 def get_single_activity(id):
-    activity = Activity.query.get(id)
 
+    activity = Activity.query.get(id)
+   
+    #  All gpx files are stored in AWS. This line provides AWS credentials to boto3 to get 
+    # rescources from the default session.
     s3 = boto3.resource('s3', aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"), aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"))
     
-    # allTracksArr = []
-    
     singleActivity = []
+    # This splits the URL path to retrieve only the gpx file name. 
     url_list = activity.gps_file_url.split('/')
     file_ext = url_list[len(url_list) - 1]
     obj = s3.Object('042521srtestbucket', file_ext)
+    
+    # This reads the retrieved file, so it can be parsed. 
     gpx_file = obj.get()['Body'].read()
+    
+    # This parses the gpx file into an array of subarrays, each subarray contains 
+    # [latitude, longitude]. This will be used on the frontend to plot each point as 
+    # a polyline using leaflet. 
     gpx = gpxpy.parse(gpx_file)
-    # activity.gps_file_url = gpx
     for track in gpx.tracks:
         for segment in track.segments:
             for point in segment.points:

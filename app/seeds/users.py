@@ -8,12 +8,19 @@ import random
 # Adds a demo user, you can add other users here if you want
 def seed_users():
 
-    url = 'https://api.unsplash.com/search/photos/?query=cyclist&count=30&client_id=w7D9hahfveF5lpAyA5ED7oMcmfmnf-34xpUmZsC2ubs'
+    url = 'https://api.unsplash.com/search/photos/?query=cyclist&orientation=landscape&client_id=w7D9hahfveF5lpAyA5ED7oMcmfmnf-34xpUmZsC2ubs'
     r = requests.get(url)
     response = r.json()
     photos = []
     photoObj = response['results']
     for photo in photoObj:
+        photos.append(photo['urls']['small'])
+
+    runnerUrl = 'https://api.unsplash.com/search/photos/?query=runner&orientation=landscape&client_id=w7D9hahfveF5lpAyA5ED7oMcmfmnf-34xpUmZsC2ubs'
+    res = requests.get(runnerUrl)
+    resp = res.json()
+    runPhotoObj = resp['results']
+    for photo in runPhotoObj:
         photos.append(photo['urls']['small'])
 
     cities = [
@@ -57,6 +64,11 @@ def seed_users():
         'Seaside',
         'Carmel',
         'Napa'
+    ]
+
+    avatarImg = [
+        ''
+
     ]
 
     demo = User(username='Demo', email='demo@aa.io',

@@ -1,6 +1,6 @@
 .entirepage{
     width: 100%;
-    height: 400vh;
+    height: auto;
     display: flex;
     /* background-color: rgba(235, 235, 235, 0.5); */
     /* background: #ee9ca7;   */
@@ -71,10 +71,11 @@
 }
 
 .avatarImg {
-    border-radius: 50%;
-    width: 65px;
-    height: 65px;
-    margin-right: 15px;
+    display: inline;
+  margin: 0 auto;
+  /* margin-left: -25%;  */
+  height: 100%;
+  width: auto;
 }
 
 .follower {
@@ -132,7 +133,36 @@ h3 {
     justify-content: space-between;
 }
 
-/* .fas {
-    margin: 10px;
-    width:100px;
-} */
+.followBtn{
+    /* border: 2px solid black; */
+    width: 95px;
+    border-radius: 20px;
+    margin-top: 5px;
+    background-color:rgba(255, 75, 107, 0.9);
+    /* background-color: #4b6cff; */
+    color: white;
+    padding: 4px;
+    outline: none;
+    border: none;
+}
+
+.follower {
+    
+    width: 90%;
+}
+
+.nameAndFollowBtn {
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.imageCropper {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: gray;
+}
+

@@ -13,11 +13,12 @@ function AddActivity () {
     const [gpx, setGpx] = useState(null)
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false)
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(true);
     
 
 
     const updateDescription = (e) => {
+        console.log('inside update description')
         setDescription(e.target.value)
     }
 
@@ -48,7 +49,7 @@ function AddActivity () {
         if (res.ok){
             await res.json()
             setImageLoading(false)
-            
+            setShowModal(false)
             history.push('/');
         }
         else {
@@ -56,22 +57,26 @@ function AddActivity () {
             console.log("error, no good.")
         }
     }
-    
+    if(!showModal) return null;
 
+    if (showModal){
     return (
         
             <Modal onClose={() => setShowModal(false)}>
                 <div className={styles.formDiv}><p className={styles.activityTitle}>Add an Activity</p>
                     <form id={styles.activityForm} onSubmit={handleSubmit}>
-                        <p>Activity Description</p>
-                        <input
-                        type="text"
-                        name="description"
-                        // placeholder="Descripion"
-                        onChange={updateDescription}
-                        value={description}
-                        ></input>
-                        <div><p>Select an Actity Type</p>
+                        <div>
+                            <p className={styles.inputTitle}>Activity Description</p>
+                            <input
+                            type="text"
+                            name="description"
+                            className={styles.addActivityInput}
+                            // placeholder="Descripion"
+                            onChange={updateDescription}
+                            value={description}
+                            ></input>
+                        </div>
+                        <div><p className={styles.inputTitle}>Select an Activity Type</p>
                             <select>
                                 <option value="">Road Biking</option>
                                 <option value="">Mountain Biking</option>
@@ -79,16 +84,18 @@ function AddActivity () {
                                 <option value="">Trail Running</option>
                             </select>
                         </div>
-                        <div><p>Add GPS File here</p>
+                        <div><p className={styles.inputTitle}>Add GPS File here</p>
                             <input type="file"
+                            className={styles.addActivityInput}
                             onChange={updateGpx}
                             />
                         </div>
-                        <div><p>Add Image here</p>
+                        <div><p className={styles.inputTitle}>Add Image here</p>
                             <input
                             type="file"
                             accept="image/*"
                             onChange={updateImage}
+                            className={styles.addActivityInput}
                             />
                         </div>
                         <button className={styles.addActivityBtn} type="submit">Submit</button>
@@ -98,6 +105,7 @@ function AddActivity () {
             </Modal>
         
     )
+}
 
 
 }

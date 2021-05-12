@@ -16,29 +16,46 @@
 
 .active {
     /* border: 2px solid black; */
-    width: 200px;
+    /* width: 200px;
     background-color: rgb(255, 75, 107);
     color: white;
     padding-right: 100px;
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 0 5px 5px 0;
-    text-decoration: none;
-    
+    text-decoration: none; */
+    color: black;
+    font-weight: bolder;
+    font-size: 18px;
+    transition: all 1s linear;
 }
 
 .notactive {
     text-decoration: none;
     color: rgb(255, 75, 107);
-    margin-left: 5px;
+    font-size: 18px;
+    transition: all 1s linear;
+    /* margin-left: 5px; */
 }
 
-button {
+/* button {
     
     color: rgb(255, 75, 107);
     background-color: white;
     outline: none;
     border: none;
     font-size: 18px;
-}
+} */
 
+.addActivityBtn {
+    color: white;
+    background-color: rgb(255, 75, 107);
+    outline: none;
+    border: none;
+    font-size: 18px;
+    border-radius: 20px;
+    align-self: center;
+    width: 90%;
+    padding: 10px;
+
+}

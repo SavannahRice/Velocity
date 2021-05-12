@@ -12,7 +12,6 @@ function FollowButton (userId) {
     const addFollower = async (e) => {
         e.preventDefault()
         const id = userId.userId
-        console.log(userId.userId)
         setButtonText('Following')
         
         const response = await fetch(`/api/users/follow/${id}`, {
@@ -23,7 +22,7 @@ function FollowButton (userId) {
       }
 
       return (
-        <button 
+        <button className={styles.followBtn}
         onClick={addFollower}
       >{buttonText}
       </button>

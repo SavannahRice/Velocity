@@ -51,7 +51,7 @@ function UsersList() {
        
         user.map(item => {
           
-          if (!follow.includes(item.id)) {
+          if (!follow.includes(item.id) && item.id !== currentUser.id) {
             notFollowingArr.push(item)
           }
         })
@@ -74,10 +74,10 @@ const userComponents = Object.values(notFollowing).map((user) => {
   
   return (
     <div className={styles.follower}   value={user}>
-        <span><img src={user.avatar_img}  className={styles.avatarImg} alt=""/> </span>
-        <a href=""><span>{user.username}<p>{user.id}</p>
-        <FollowButton userId={user.id}/>
-        </span></a>
+        <div className={styles.imageCropper}><img src={user.avatar_img}  className={styles.avatarImg} alt=""/> </div>
+        <div className={styles.nameAndFollowBtn}>{user.username}
+          <FollowButton userId={user.id}/>
+        </div>
     </div>
   )
 })
@@ -86,8 +86,7 @@ const userComponents = Object.values(notFollowing).map((user) => {
 
   return (
     <>
-      <h1>User List: </h1>
-      <ul>{userComponents}</ul>
+      {userComponents}
     </>
   );
 }

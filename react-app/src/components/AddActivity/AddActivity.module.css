@@ -49,11 +49,11 @@
 } */
 
 .formDiv {
-    /* border: 2px solid black; */
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
+
     
 }
 
@@ -64,6 +64,7 @@ input[type=file]::file-selector-button {
     background-color: #4b6cff;
     transition: 1s;
     color: white;
+    
   }
 
   #activityForm {
@@ -85,9 +86,31 @@ input[type=file]::file-selector-button {
       font-size: 40px;
       text-align: center;
       color: rgb(255, 75, 107);
+      
   }
 
-  .activityForm > input {
-      background-color: red;
+  
 
+  .addActivityInput {
+      border: 1px solid lightgray;
+      width: 95%;
+      align-self: center;
+     
+
+  }
+
+  .addActivityBtn {
+    color: white;
+    background-color: rgb(255, 75, 107);
+    outline: none;
+    border: none;
+    font-size: 18px;
+    border-radius: 20px;
+    align-self: center;
+    width: 80%;
+    padding: 10px;
+  }
+
+  .inputTitle{
+      font-size: 18px;
   }

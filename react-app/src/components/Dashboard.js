@@ -85,7 +85,7 @@ function Dashboard() {
                 {activities.map(activity => (
                     <div className={styles.middle}>
                         <div className={styles.profileHeader}>
-                            <div className={styles.headerDiv}><img className={styles.avatarImg} src={user.avatar_img} alt=""/><p>{user.username}</p></div>
+                            <div className={styles.headerDiv} className={styles.imageCropper}><img className={styles.avatarImg} src={user.avatar_img} alt=""/><p>{user.username}</p></div>
                             <div className={styles.headerDiv}><i className="fas fa-edit" value={activity} onMouseOver={() => setActivityId(activity.id)} onClick={handleEdit} ></i><i className="fas fa-trash-alt"  value={activity.id} onMouseOver={() => setActivityId(activity.id)} onClick={handleDelete}></i></div>
                         </div>
                         <div className={styles.mapDiv}><Map id={activity.id}/></div>
@@ -113,7 +113,7 @@ function Dashboard() {
 
                 ))}
             </div>
-            <div className={styles.rightSidebar}><h3>Your Friends</h3>
+            <div className={styles.rightSidebar}><h3>Suggested Users</h3>
                 <Following/>
             </div>
             

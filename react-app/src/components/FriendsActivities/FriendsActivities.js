@@ -5,6 +5,7 @@ import SideNavBar from '../NavBar/SideNavBar'
 import styles from './FriendsActivities.module.css'
 import SinglePost from './Post'
 import Map from '../DashboardElements/ActivityMap'
+import UsersList from '../UsersList';
 
 
 function FriendsActivities () {
@@ -34,6 +35,7 @@ function FriendsActivities () {
         <div className={styles.entirepage}>
             <div className={styles.leftSidebar}>
                 <SideNavBar/>
+                
             </div>
             <div className={styles.friendsActivities}>
                 {newArr.map(activity => (
@@ -42,10 +44,6 @@ function FriendsActivities () {
                         <SinglePost activity={activity} />
                     </>
                 ))}
-                {/* {Object.values(newObj).map(activity => (
-                    
-                   <SinglePost activity={newObj[18]} />
-                ))} */}
             </div>
         </div>
     )
