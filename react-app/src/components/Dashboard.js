@@ -3,11 +3,12 @@ import  { useDispatch, useSelector } from "react-redux";
 import { getActivities } from "../store/activity";
 import styles from './Dashboard.module.css';
 import Following from './DashboardElements/following';
-import SideNavBar from '../components/NavBar/SideNavBar'
-import {getUser } from '../store/session'
-import Map from './DashboardElements/ActivityMap'
-import SinglePost from './FriendsActivities/Post'
-import { Modal } from '../components/context/Modal'
+import SideNavBar from '../components/NavBar/SideNavBar';
+import {getUser } from '../store/session';
+import Map from './DashboardElements/ActivityMap';
+import SinglePost from './FriendsActivities/Post';
+import { Modal } from '../components/context/Modal';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -82,6 +83,17 @@ function Dashboard() {
                 <SideNavBar/>
             </div>
             <div className={styles.middleBar}>
+            <div className={styles.welcomeDiv}>
+                <div className={styles.individualUserWelcome}>
+                    Welcome, {user.username}
+                </div>
+                <div className='navlinkDiv'>
+                    <NavLink to="/" exact={true} className={styles.notactive} activeClassName={styles.active} >
+                        Dashboard
+                    </NavLink>
+                    <NavLink to="/feed" exact={true} className={styles.notactive} activeClassName={styles.active} >Friends Activities</NavLink>
+                </div>
+            </div>
                 {activities.map(activity => (
                     <div className={styles.middle}>
                         <div className={styles.profileHeader}>

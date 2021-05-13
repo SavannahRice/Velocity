@@ -2,14 +2,16 @@
     width: 100%;
     height: auto;
     display: flex;
-    /* background-color: rgba(235, 235, 235, 0.5); */
-    /* background: #ee9ca7;   */
-    /* background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  */
-    /* background: linear-gradient(to right, #ffdde1, #ee9ca7);  */
+    /* background: rgb(32, 149, 178); */
+    /* background: rgb(32, 107, 178); */
     border-radius: 5px;
-    background: #f2709c;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #ff9472, rgb(255, 75, 107));  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #ff9472, rgb(255, 75, 107)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* background: #f2709c;   */
+    /* background: -webkit-linear-gradient(to left, #ff9472, rgb(255, 75, 107));    */
+    /* background: linear-gradient(to left, #ff9472, rgb(255, 75, 107));   */
+    background: #314755;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #26a0da, #314755);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #26a0da, #314755); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     
 }
 
@@ -28,13 +30,16 @@
 
 .leftSidebar {
     
-    width: 200px;
+    width: 220px;
     background-color: white;
     display: flex;
     flex-direction: column;
-    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px;
+    margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 10px;
     box-shadow: rgba(0, 0, 0, 0.24)  4px 0px -2px;
+    border-radius: 5px;
 }
 
 
@@ -45,7 +50,8 @@
 }
 
 .middle {
-    height: 520px;
+    min-height: 520px;
+    height: auto;
     margin: 20px 10px;
     text-align: center;
     background-color: white;
@@ -84,9 +90,10 @@ h3 {
 }
 
 .activityPhoto{
-    height: 240px;
+    max-height: 240px;
     width: auto;
     border-radius: 5px;
+    max-width: 360px;
 
 }
 
@@ -102,6 +109,7 @@ h3 {
 
 .photoAndDescriptionDiv {
     flex-basis: 50%;
+    max-width: 360px;
 
 }
 
@@ -171,8 +179,42 @@ h3 {
 
 .header {
     
-    width: 140px;
+    max-width: 270px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
+}
+
+.welcomeDiv {
+    
+    height: 100px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px;
+    margin: 20px 10px;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: space-between;
+
+}
+
+.individualUserWelcome {
+    font-size: 40px;
+    color: rgb(255, 75, 107);
+}
+
+.notactive {
+    color: grey;
+    text-decoration: none;
+    padding: 20px;
+    font-size: 18px;
+}
+
+.active {
+    color: rgb(255, 75, 107);
+    text-decoration: underline;
+    font-size: 18px;
+
 }

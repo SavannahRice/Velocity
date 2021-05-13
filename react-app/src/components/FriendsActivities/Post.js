@@ -84,7 +84,7 @@ function SinglePost (activity) {
             {/* </div> */}
             <div><img  className={styles.activityPhoto} src={singleactivity.photo_url} alt=""/></div>
             <div>{displayLikes(singleactivity)}</div>
-            <div>{singleactivity.activity_description}</div>
+            <div className={styles.description}>{singleactivity.activity_description}</div>
             <div className={styles.stats}>
                 <span>
                     <p>Distance</p>

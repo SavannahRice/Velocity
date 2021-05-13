@@ -1,3 +1,11 @@
+
+.topNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 20px;
+}
+
 .logo {
     width: 200px;
     margin-left: 0px;
@@ -11,6 +19,7 @@
     justify-content: space-between;
     margin-top: 25px;
     box-shadow: none;
+    align-items: center;
 
 }
 
@@ -57,5 +66,74 @@
     align-self: center;
     width: 90%;
     padding: 10px;
+    cursor: pointer;
+    
 
+}
+
+.activityStatsTableDiv {
+    /* border: 2px solid black; */
+    font-size: 16px;
+    height: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    
+}
+
+.activityStatsTable {
+    text-align: center;
+    padding: 10px;
+    
+}
+
+table, th, td {
+    /* border: 1px solid black; */
+}
+
+th {
+    width: 80px;
+    text-decoration: underline;
+    font-weight: 400;
+}
+
+.calHeader {
+    text-align: center;
+}
+
+.profileButton {
+    border: none;
+    background-color: white;
+    margin-bottom: 2px;
+    
+    
+}
+
+.imageCropper {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    /* margin: 10px; */
+    
+}
+
+.avatarImg {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+    
+}
+
+.dropList {
+    /* border: 2px solid black; */
+    position: fixed;
+    top: 80px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
 }
