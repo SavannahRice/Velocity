@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import  { useDispatch, useSelector } from "react-redux";
 import styles from '../components/Dashboard.module.css'
 import FollowButton from '../components/FollowButton'
-import IndividualUser from "../components/IndividualUser/IndividualUser"
+
 import {Modal} from "../components/context/Modal";
 
 
