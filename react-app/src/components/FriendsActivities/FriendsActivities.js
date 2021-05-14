@@ -31,14 +31,12 @@ function FriendsActivities () {
     
     
     following.map((activityArr) => {
-        // console.log(activityArr.activities)
         for (let i = 0; i < activityArr.activities.length; i++){
             let current = activityArr.activities[i]
             newArr.push(current)
         }
     } )
 
-    console.log(newArr)
 
     const updateDescription = (e) => {
         setNewDescription(e.target.value)
@@ -47,7 +45,6 @@ function FriendsActivities () {
     const handleSumbit = async (e) => {
         e.preventDefault()
         const id = Object.values(e.target)[1].value
-        console.log(id)
         const formData = new FormData()
         formData.append('description', newDescription)
 

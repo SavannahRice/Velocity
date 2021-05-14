@@ -95,7 +95,7 @@ function Dashboard() {
                 </div>
             </div>
                 {activities.map(activity => (
-                    <div className={styles.middle}>
+                    <div className={styles.middle} key={activity.id}>
                         <div className={styles.profileHeader}>
                             <div className={styles.header}>
                                 <div className={styles.headerDiv} className={styles.imageCropper}>

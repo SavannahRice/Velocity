@@ -1,19 +1,15 @@
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
-import React, { useState, useEffect } from "react";
-import  { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import logo from '../LogoMakr.png';
+
+import React, { useState } from "react";
+import  {  useSelector } from "react-redux";
 import styles from './NavBar.module.css';
 import AddActivity from '../AddActivity/AddActivityForm';
-import { Modal } from '../context/Modal';
 import Calendar from "../NavBar/Calendar";
 import ActivityStats from "../NavBar/ActivityStats";
 
 const SideNavBar = () => {
     const user = useSelector(state => state.session.user)
     const [showModal, setShowModal] = useState(false);
-    const [showAddForm, setShowAddForm] = useState(false);
+    // const [showAddForm, setShowAddForm] = useState(false);
 
     const handleAddActivity = async (e) => {
         setShowModal(true)

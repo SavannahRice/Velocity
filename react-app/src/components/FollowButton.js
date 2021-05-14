@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import  { useDispatch, useSelector } from "react-redux";
+import React, {  useState } from "react";
 import styles from '../components/Dashboard.module.css'
-import {getUser} from '../store/session'
 
 function FollowButton (userId) {
     const [buttonText, setButtonText] = useState('Follow')
-    const user = useSelector(state => state.session.user);
-    const dispatch = useDispatch()
+    // const user = useSelector(state => state.session.user);
+    // const dispatch = useDispatch()
 
     const addFollower = async (e) => {
         e.preventDefault()

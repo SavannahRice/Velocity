@@ -17,7 +17,6 @@ const ActivityStats = () => {
     
     
     useEffect(() => {
-        console.log('in useeffect')
         dispatch(getUser(user.id))
         setFollowing(user.following.length)
 
@@ -26,17 +25,19 @@ const ActivityStats = () => {
     return (
         <div className={styles.activityStatsTableDiv}><h3>Your Stats</h3>
             <table className={styles.activityStatsTable}>
-                <tr className={styles.rowHeaders}>
-                    <th>Activities</th>
-                    <th>Miles</th>
-                    <th>Hours</th>
-                    {/* <th>Miles</th> */}
-                </tr>
-                <tr>
-                    <td>{numActivities}</td>
-                    <td>{following}</td>
-                    <td>{numFollowers}</td>
-                </tr>
+                <tbody>
+                    <tr className={styles.rowHeaders}>
+                        <th>Activities</th>
+                        <th>Miles</th>
+                        <th>Hours</th>
+                        {/* <th>Miles</th> */}
+                    </tr>
+                    <tr>
+                        <td>{numActivities}</td>
+                        <td>{following}</td>
+                        <td>{numFollowers}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     )

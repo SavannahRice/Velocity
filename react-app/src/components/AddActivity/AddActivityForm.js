@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
-import  { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom"
-import { useParams } from "react-router-dom";
-import SideNavBar from "../NavBar/SideNavBar"
 import styles from "./AddActivity.module.css"
-import photo from "./laurine-bailly.jpg"
 import { Modal } from '../context/Modal'
 
 function AddActivity () {
