@@ -1,51 +1,24 @@
 .entirePage {
     width: 100%;
+    height: 100vh;
     display: flex;
     margin: none;
+    background-image: url('asoggetti-GYr9A2CPMhY-unsplash.jpg');
+    background-size: 100%;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    height: 60vh;
-    align-content: center;
-    margin-top: 50px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px;
-}
 
-h2 {
-    color: rgb(255, 75, 107);
-    margin-top: 50px;
-    font-size: 40px;
-    text-align: center;
-}
 
 .formInput {
     width: 100%;
-    /* margin: 15px 0px; */
-    /* border: 2px solid blue; */
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-input {
-    width: 90%;
-    height: 30px;
-    font-size: 20px;
-    /* border: 1.5px solid lightgray; */
-    border: none;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    font-weight: 200;
-}
+
 
 .btnDiv{
-    /* border: 2px solid red; */
     width: 100%;
     display: flex;
     justify-content: center;
@@ -59,42 +32,26 @@ input {
     margin: 5px;
     border-radius: 5px;
     outline: none;
-    /* border: 1.5px solid lightgray; */
     border: none;
-    background-color:rgb(255, 75, 107);;
+    background-color:rgb(255, 75, 107);
     font-size: 20px;
     color: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     font-weight: 200;
 }
 
-.rightSide,
-.leftSide {
-    width: 50%;
-}
+
 
 .leftSide{
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background: #B24592;   */
-    /* background: -webkit-linear-gradient(to right, #F15F79, #B24592);   */
-    /* background: linear-gradient(to right, #F15F79, #B24592);  */
-    /* background: #8e9eab;  
-background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);  
-background: linear-gradient(to right, #eef2f3, #8e9eab);  */
-
+    width: 50%;
 
 }
 
-img {
-    width: 100%;
-    
-    
-}
 
 .errors {
-    /* border: 2px solid red; */
     height: 80px;
     text-align: center;
     margin-top: 20px;
@@ -109,23 +66,8 @@ img {
     color: gray;
 }
 
-/* .fileUpload::-webkit-file-upload-button {
-    visibility: hidden;
-  } */
+.signupForm {
+    background-color: rgba(255, 255, 255, 0.5);
+    height: auto;
+}
 
-
-/* .fileUpload::before {
-    content: 'Add profile picture';
-    display: inline-block;
-    background: white;
-    /* border: 1px solid #999; */
-    /* border-radius: 3px; */
-    /* padding: 5px 8px; */
-    /* outline: none; */
-    /* white-space: nowrap; */
-    /* -webkit-user-select: none; */
-    /* cursor: pointer; */
-    /* text-shadow: 1px 1px #fff; */
-    /* font-weight: 200; */
-    /* font-size: 10pt; */
-  /* } */ 

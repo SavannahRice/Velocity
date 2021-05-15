@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUp, login } from '../../store/session';
 import styles from './SignUpForm.module.css'
 import photo from './coen-van-de-broek-m3deylWrxHw-unsplash.jpg'
 
@@ -16,6 +16,7 @@ const SignUpForm = () => {
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [avatar, setAvatar] = useState(null)
+  const [errors, setErrors] = useState([]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -23,6 +24,15 @@ const SignUpForm = () => {
       await dispatch(signUp(username, email, city, state, avatar, password));
     }
   };
+
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data.errors) {
+      setErrors(data.errors);
+    }
+
+  }
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -61,7 +71,12 @@ const SignUpForm = () => {
     <div className={styles.entirePage}>
         <div className={styles.leftSide}>
           <h2>Welcome! Create an account here.</h2>
-          <form onSubmit={onSignUp}>
+          <form onSubmit={onSignUp} className={styles.signupForm}>
+          <div className={styles.errors}>
+            {errors.map((error) => (
+              <div>{error}</div>
+            ))}
+          </div>
             <div className={styles.formInput}>
               <input
                 type="text"
@@ -117,22 +132,15 @@ const SignUpForm = () => {
                 required={true}
               ></input>
             </div>
-            {/* <div className={styles.formInput}>
-            <input
-                className={styles.fileUpload}
-                type="file"
-                name="avatar"
-                onChange={(e) => setAvatar(e.target.files[0])}
-              ></input>
-
-            </div> */}
             <div className={styles.btnDiv}>
-                  <button type="submit" className={styles.formBtn}>Login</button>
-                  <button className={styles.formBtn}>Sign Up</button>
+                  <button type="submit" className={styles.formBtn}>Sign Up</button>
+                  <button className={styles.formBtn} onClick={demoLogin}>Demo User</button>
+            </div>
+            <div className={styles.terms}>
+              <p>By signing up, you agree to Velocity's Terms and Conditions & Privacy Policy. </p>
             </div>
           </form>
         </div>
-      <div className={styles.rightSide}><img src={photo} alt=""/></div>
     </div>
   );
 };

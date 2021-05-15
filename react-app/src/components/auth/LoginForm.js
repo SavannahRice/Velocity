@@ -45,7 +45,7 @@ const LoginForm = () => {
     <div className={styles.entirePage}>
       <div className={styles.leftSide}>
         <h2>Welcome Back. Please login to you account.</h2>
-        <form onSubmit={onLogin}>
+        <form onSubmit={onLogin} className={styles.loginForm}>
           <div className={styles.errors}>
             {errors.map((error) => (
               <div>{error}</div>
@@ -72,14 +72,14 @@ const LoginForm = () => {
           </div>
           <div className={styles.btnDiv}>
             <button type="submit" className={styles.formBtn}>Login</button>
-            <button className={styles.formBtn} onClick={demoLogin}>Demo</button>
+            <button className={styles.formBtn} onClick={demoLogin}>Demo User</button>
           </div>
           <div className={styles.terms}>
             <p>By signing up, you agree to Velocity's Terms and Conditions & Privacy Policy. </p>
           </div>
         </form>
       </div>
-      <div className={styles.rightSide}><img src={photo} alt=""/></div>
+      {/* <div className={styles.rightSide}><img src={photo} alt=""/></div> */}
     </div>
   );
 };

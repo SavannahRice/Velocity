@@ -10,3 +10,35 @@
     
   }
    */
+
+   input {
+    width: 90%;
+    height: 30px;
+    font-size: 20px;
+    /* border: 1.5px solid lightgray; */
+    border: none;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-weight: 200;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 60vh;
+    align-content: center;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px;
+}
+
+h2 {
+    color: rgb(255, 75, 107);
+    margin-top: 50px;
+    font-size: 40px;
+    text-align: center;
+}
+

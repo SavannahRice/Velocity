@@ -16,12 +16,18 @@ const NavBar = () => {
     return (
       <nav className={styles.topNav}>
           <img className={styles.logo} src={logo} alt=""/>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
+          <div className={styles.linksDiv}>
+            <div className={styles.NavLinkDiv}>
+              <NavLink to="/login" exact={true} activeClassName={styles.activeNav} className={styles.notActiveNav}>
+                Login
+              </NavLink>
+            </div>
+            <div className={styles.NavLinkDiv}>
+              <NavLink to="/sign-up" exact={true} activeClassName={styles.activeNav} className={styles.notActiveNav}>
+                Sign Up
+              </NavLink>
+            </div>
+          </div>
           
     </nav>
     )

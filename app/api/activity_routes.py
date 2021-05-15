@@ -139,7 +139,7 @@ def add_single_activity():
 
     photo = image_upload["url"]
 
-    print(url)
+    
 
     s3 = boto3.resource('s3', aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"), aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"))
     filename = url.split('/')
@@ -148,7 +148,7 @@ def add_single_activity():
     gpx_file = obj.get()['Body'].read()
     gpx_points = gpxpy.parse(gpx_file)
     moving_data = gpx_points.get_moving_data()
-    print('+++++++++++++++++++', moving_data )
+    
 
     new_activity = Activity(activity_type_id=1,user_id=current_user.id, gps_file_url=url, 
                     photo_url=photo,

@@ -12,7 +12,6 @@
 }
 
 .sideNav {
-    
     display: flex;
     flex-direction: column;
     height: 50vh;
@@ -20,19 +19,9 @@
     margin-top: 25px;
     box-shadow: none;
     align-items: center;
-
 }
 
 .active {
-    /* border: 2px solid black; */
-    /* width: 200px;
-    background-color: rgb(255, 75, 107);
-    color: white;
-    padding-right: 100px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 0 5px 5px 0;
-    text-decoration: none; */
     color: black;
     font-weight: bolder;
     font-size: 18px;
@@ -47,15 +36,6 @@
     /* margin-left: 5px; */
 }
 
-/* button {
-    
-    color: rgb(255, 75, 107);
-    background-color: white;
-    outline: none;
-    border: none;
-    font-size: 18px;
-} */
-
 .addActivityBtn {
     color: white;
     background-color: rgb(255, 75, 107);
@@ -67,28 +47,19 @@
     width: 90%;
     padding: 10px;
     cursor: pointer;
-    
-
 }
 
 .activityStatsTableDiv {
-    /* border: 2px solid black; */
     font-size: 16px;
     height: 100px;
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: center;
-    
 }
 
 .activityStatsTable {
     text-align: center;
     padding: 10px;
-    
-}
-
-table, th, td {
-    /* border: 1px solid black; */
 }
 
 th {
@@ -105,8 +76,6 @@ th {
     border: none;
     background-color: white;
     margin-bottom: 2px;
-    
-    
 }
 
 .imageCropper {
@@ -115,8 +84,6 @@ th {
     position: relative;
     overflow: hidden;
     border-radius: 50%;
-    /* margin: 10px; */
-    
 }
 
 .avatarImg {
@@ -124,11 +91,9 @@ th {
     margin: 0 auto;
     height: 100%;
     width: auto;
-    
 }
 
 .dropList {
-    /* border: 2px solid black; */
     position: fixed;
     top: 80px;
     right: 10px;
@@ -137,3 +102,32 @@ th {
     padding: 10px;
     border-radius: 5px;
 }
+
+.linksDiv {
+    
+    width: 210px;
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.NavLinkDiv {
+    
+    width: 100px;
+    text-align: center;
+    background-color:rgb(255, 75, 107);
+    border-radius: 5px;
+    height: 35px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.activeNav, 
+.notActiveNav {
+    
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    font-weight: 200;
+}
+
+
