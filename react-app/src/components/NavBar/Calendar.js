@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from "./NavBar.module.css"
+// import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+
+
 
 function ActivityCalendar () {
 
@@ -10,9 +13,8 @@ function ActivityCalendar () {
     return (
         <div><h3 className={styles.calHeader}>Activity Calendar</h3>
           <Calendar
-            onChange={onChange}
-            value={value}
-            styles={{outline: "none"}}
+            
+            
           />
         </div>
       );

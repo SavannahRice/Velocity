@@ -218,3 +218,50 @@ h3 {
     font-size: 18px;
 
 }
+
+.singleUser {
+    background-color: white;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.singleUser:hover {
+    color:rgb(255, 75, 107);
+}
+
+.modalDiv {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 370px;
+
+}
+
+.imageCropperModal {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 10px;
+    
+}
+
+.photosDiv {
+    max-height: 240px;
+    width: auto;
+    border-radius: 5px;
+    max-width: 360px;
+    overflow: scroll;
+    margin-top: 20px;
+
+}
+
+.indUserPhotos {
+    max-height: 240px;
+
+}

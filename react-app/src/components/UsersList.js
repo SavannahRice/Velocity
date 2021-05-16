@@ -66,9 +66,13 @@ function UsersList() {
   const getUser = async () => {
     const response = await fetch(`/api/users/${id}`);
     const user = await response.json();
+    user.activities.map(activity => {
+      console.log(activity.photo_url)
+    })
     setUser(user);
   };
   await getUser()
+
  }
 
 
@@ -80,10 +84,11 @@ const userComponents = Object.values(notFollowing).map((user) => {
     <div className={styles.follower}   value={user} key={user.id}>
         <div className={styles.imageCropper}><img src={user.avatar_img}  className={styles.avatarImg} alt=""/> </div>
         <div className={styles.nameAndFollowBtn}>
-          <button 
+          <button className={styles.singleUser}
             onClick={(e) => showSingleUser(e, user.id)}>{user.username}
           </button>
           <FollowButton userId={user.id}/>
+          
           
         </div>
         
@@ -98,8 +103,19 @@ const userComponents = Object.values(notFollowing).map((user) => {
       {userComponents}
       {showModal && (
           <Modal onClose={()=> setShowModal(false)}>
-            <h1>{user.username}</h1>
-            <div className={styles.imageCropper}><img src={user.avatar_img}  className={styles.avatarImg} alt=""/> </div>
+            <div className={styles.modalDiv}>
+              <div className={styles.imageCropperModal}><img src={user.avatar_img}  className={styles.avatarImg} alt=""/></div>
+              <h1>{user.username}</h1>
+              <div>{user.city}, {user.state}</div>
+              <FollowButton userId={user.id}/>
+              <div className={styles.photosDiv}>
+                {user.activities && user.activities.map(activity => (
+                  <img className={styles.indUserPhotos} src={activity.photo_url} alt="" />
+                ))}
+                
+              </div>
+              
+            </div>
           </Modal>
         )}
     </>
