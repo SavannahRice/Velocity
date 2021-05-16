@@ -21,6 +21,7 @@
 .friendsActivities {
     flex-basis: 45%;
     margin-left: 20px;
+    
 }
 
 .middleBar {
@@ -38,18 +39,33 @@
     flex-direction: column; 
     box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px;
     
+    
 }
 
 .stats {
     display: flex;
     justify-content: space-around;
     margin: 5px;
+    height: auto;
 }
+
+.activityImageWrapper {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    margin: 10px;
+    align-self: center;
+    
+
+}
+
 
 .activityPhoto{
     height: auto;
     width: 360px;
-    /* max-width: 260px; */
+    border-radius: 5px;
 
 }
 

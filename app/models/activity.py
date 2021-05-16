@@ -42,5 +42,6 @@ class Activity(db.Model):
             "descent_feet": self.descent_feet,
             "activity_type": self.activity_type.to_dict(),
             "user": self.user_activities.user_info(),
-            "likes": [like.to_dict() for like in self.likes]
+            "likes": [like.to_dict() for like in self.likes],
+            "created_at": self.created_at,
         }

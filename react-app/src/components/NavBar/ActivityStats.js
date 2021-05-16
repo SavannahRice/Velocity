@@ -13,7 +13,13 @@ const ActivityStats = () => {
     const numActivities = activities.length;
     const numFollowers = user.followers.length;
     const numFollowing = user.following.length;
-    
+    let allMiles = 0;
+    let allDuration = 0;
+
+    activities.map(activity => {
+        allMiles += activity.distance;
+        allDuration += activity.duration;
+    })
     
     
     useEffect(() => {
@@ -34,8 +40,8 @@ const ActivityStats = () => {
                     </tr>
                     <tr>
                         <td>{numActivities}</td>
-                        <td>{following}</td>
-                        <td>{numFollowers}</td>
+                        <td>{Math.round(allMiles)}</td>
+                        <td>{Math.round(allDuration)}</td>
                     </tr>
                 </tbody>
             </table>

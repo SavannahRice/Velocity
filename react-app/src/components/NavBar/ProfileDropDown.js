@@ -32,7 +32,7 @@ const ProfileButton = () => {
             </button>
             {showMenu && (
                 <div className={styles.dropList}>
-                    <NavLink to='/profile' exact={true} >Edit Profile</NavLink>
+                    {/* <NavLink to='/profile' exact={true} >Edit Profile</NavLink> */}
                     <LogoutButton/>
                 </div>
             )

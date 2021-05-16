@@ -82,7 +82,7 @@ function SinglePost (activity) {
                 {/* <img className={styles.userAvatar} src={singleactivity.user.avatar_img} alt=""/>
                 <div className={styles.username}>{singleactivity.user.username}</div> */}
             {/* </div> */}
-            <div><img  className={styles.activityPhoto} src={singleactivity.photo_url} alt=""/></div>
+            <div className={styles.activityImageWrapper}><img  className={styles.activityPhoto} src={singleactivity.photo_url} alt=""/></div>
             <div>{displayLikes(singleactivity)}</div>
             <div className={styles.description}>{singleactivity.activity_description}</div>
             <div className={styles.stats}>

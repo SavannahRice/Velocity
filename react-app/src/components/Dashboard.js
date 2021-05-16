@@ -28,8 +28,6 @@ function Dashboard() {
 
     const handleDelete = async (e) => {
         const post = Object.values(e.target)[1]
-        console.log(post)
-        console.log('inside handle delete')
         await fetch(`api/activities/${activityId}`, {
             method: "DELETE"
         })
@@ -39,9 +37,10 @@ function Dashboard() {
 
     const handleEdit = async (e) => {
         setShowModal(true)
-        console.log(showModal)
         const post = Object.values(e.target)[1].value
+        console.log(post)
         setDescription(post.activity_description)
+        setActivityId(post.id)
 
     }
 
@@ -49,10 +48,11 @@ function Dashboard() {
         setNewDescription(e.target.value)
     }
 
-    const handleSumbit = async (e) => {
+    const handleSumbit = async (activity,  e) => {
         e.preventDefault()
-        const id = Object.values(e.target)[1].value
-        console.log(id)
+        // const id = Object.values(e.target)[1].value
+        const id = activityId
+        // console.log('ID from EDIT',activityId)
         const formData = new FormData()
         formData.append('description', newDescription)
 
@@ -67,7 +67,7 @@ function Dashboard() {
             await res.json()
             setFormUpdate(false)
             setShowModal(false)
-            return dispatch(getUser(user.id))
+            dispatch(getUser(user.id))
         }
     }
 
@@ -109,16 +109,17 @@ function Dashboard() {
                         <SinglePost activity={activity} />
                         {showModal && (
                             <Modal onClose={() => setShowModal(false)}>
-                                <div>
-                                    <form action="" onSubmit={handleSumbit} value={activity.id}><h2>Edit Activity</h2>
+                                <div className={styles.editFormDiv}>
+                                    <form className={styles.editForm} action="" onSubmit={(e) => handleSumbit(activity, e)} value={activity.id}><h2>Edit Activity</h2>
                                         <input 
+                                        className={styles.editDescription}
                                         type="text"
                                         name="description"
                                         placeholder={description}
                                         onChange={updateDescription}
                                         value={newDescription}
                                         ></input>
-                                        <button type="submit" value={activity.id}>Submit</button>
+                                        <button className={styles.editActivityButton}type="submit" value={activity.id}>Submit</button>
                                         
                                     </form>
                                 </div>

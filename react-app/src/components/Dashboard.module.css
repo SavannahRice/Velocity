@@ -50,7 +50,7 @@
 }
 
 .middle {
-    min-height: 520px;
+    /* min-height: 520px; */
     height: auto;
     margin: 20px 10px;
     text-align: center;
@@ -167,6 +167,7 @@ h3 {
     border-radius: 50%;
     margin: 10px;
     
+    
 }
 
 .avatarImg {
@@ -263,5 +264,39 @@ h3 {
 
 .indUserPhotos {
     max-height: 240px;
+
+}
+
+.editFormDiv {
+    
+    border-radius: 5px;
+
+}
+
+.editForm{
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.editActivityButton {
+    color: white;
+    background-color: rgb(255, 75, 107);
+    outline: none;
+    border: none;
+    font-size: 18px;
+    border-radius: 20px;
+    align-self: center;
+    width: 90%;
+    padding: 10px;
+    cursor: pointer;
+    margin: 20px;
+}
+
+.editDescription {
+    border: 1px solid lightgray;
+    padding: 5px;
 
 }

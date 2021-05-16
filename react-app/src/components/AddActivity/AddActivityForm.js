@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom"
 import styles from "./AddActivity.module.css"
-import { Modal } from '../context/Modal'
+import { Modal } from '../context/Modal';
+import  { useDispatch, useSelector} from "react-redux";
+import {getUser} from "../../store/session";
 
 function AddActivity () {
     const history = useHistory()
@@ -10,7 +12,8 @@ function AddActivity () {
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false)
     const [showModal, setShowModal] = useState(true);
-    
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.session.user);
 
 
     const updateDescription = (e) => {
@@ -47,6 +50,8 @@ function AddActivity () {
             setImageLoading(false)
             setShowModal(false)
             history.push('/');
+            dispatch(getUser(user.id))
+
         }
         else {
             setImageLoading(false)
