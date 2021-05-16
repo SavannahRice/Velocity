@@ -85,7 +85,7 @@ function FriendsActivities () {
                 </div>
             </div>
                 {newArr.map(activity => (
-                    <div className={styles.middle}>
+                    <div key= {activity.id} className={styles.middle}>
                         <div className={styles.profileHeader}>
                             <div className={styles.header}>
                                 <div className={styles.headerDiv} className={styles.imageCropper}>
