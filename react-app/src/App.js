@@ -13,6 +13,7 @@ import { authenticate } from "./store/session";
 import FriendsActivities from "./components/FriendsActivities/FriendsActivities"
 import AddActivity from "./components/AddActivity/AddActivityForm"
 import Map from "./components/DashboardElements/ActivityMap"
+import GetSuggested from "./components/testing/getUsers";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -54,6 +55,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/map" exact={true}>
           <Map exact={true}/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/test" exact={true}>
+          <GetSuggested />
         </ProtectedRoute>
         
 

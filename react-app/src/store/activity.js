@@ -152,7 +152,6 @@ export default function reducer(state = initialState, action){
             const likes = action.likes;
             console.log('inside getlikes reducer',likes)
             
-            // return {...state, likes: }
         }
 
         case GET_SINGLE_ACTIVITY: {

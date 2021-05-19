@@ -70,15 +70,6 @@ export const getUser = (id) => async (dispatch) => {
     dispatch(setUser(data))
 }
 
-// export const getAllUsers = () => async (dispatch) => {
-//     const response = await fetch(`api/users/`)
-//     if (response.ok){
-//         const data = await response.json();
-//         dispatch(allUsers)
-//     }
-// }
-
-
 export const signUp = (username, email, city, state, avatar, password) => async (dispatch)=> {
     
     
@@ -105,10 +96,7 @@ export const signUp = (username, email, city, state, avatar, password) => async 
 }
 
 // reducer
-
 const initialState = { user: null};
-
-// useSelector(state => state.session.user)
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -116,14 +104,6 @@ export default function reducer(state = initialState, action) {
             return { user: action.payload };
         case REMOVE_USER:
             return { user: null };
-        // case ALL_USERS:
-        //     const users = action.payload.users;
-        //     const allDBUsers = {}
-        //     for (const user of users){
-        //         allDBUsers[user.id] = user
-        //     }
-        //     return {...state, allUsers: allDBUsers}
-
         default:
             return state;
     }
