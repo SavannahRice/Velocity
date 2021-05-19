@@ -29,6 +29,5 @@ def add_follower(id):
     
     db.session.execute(f'''INSERT INTO followers (user_id, follower_id)
     VALUES ({id}, {current_user.id});''')
-    print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++', id, current_user.id)
     db.session.commit()
     return user.to_dict()

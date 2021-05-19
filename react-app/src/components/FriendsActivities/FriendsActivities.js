@@ -120,25 +120,12 @@ function FriendsActivities () {
                 ))}
             </div>
             <div className={styles.rightSidebar}><h3>Suggested Users</h3>
-                <Following/>
+                <UsersList/>
             </div>
             
             
         </div>
-        // <div className={styles.entirepage}>
-        //     <div className={styles.leftSidebar}>
-        //         <SideNavBar/>
-                
-        //     </div>
-        //     <div className={styles.friendsActivities}>
-        //         {newArr.map(activity => (
-        //             <>
-        //                 <div className={styles.mapDiv}><Map id={activity.id}/></div>
-        //                 <SinglePost activity={activity} />
-        //             </>
-        //         ))}
-        //     </div>
-        // </div>
+        
     )
 
 }

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import  { useDispatch, useSelector } from "react-redux";
-import styles from '../components/Dashboard.module.css'
-import FollowButton from '../components/FollowButton'
-
+import styles from '../components/Dashboard.module.css';
+import FollowButton from '../components/FollowButton';
+import { getSuggestedUsers } from '../store/suggested';
 import {Modal} from "../components/context/Modal";
 
 
@@ -12,50 +12,53 @@ function UsersList() {
   const currentUser = useSelector(state => state.session.user)
   const userFollowing = useSelector(state => state.session.user.following);
   const [user, setUser] = useState({});
+  const suggestedUsers = useSelector(state => state.suggested.suggested)
   
   const [followingIds, setFollowingIds ] = useState()
-  // const [userId, setUserId] = useState()
-  // const [buttonText, setButtonText] = useState('Follow')
+  
   const [notFollowing, setNotFollowing] = useState()
-  // const dispatch = useDispatch()
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState()
-
-  
-  
+  const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(getSuggestedUsers())
     
-    async function fetchData() {
-      const response = await fetch("/api/users/");
-      const responseData = await response.json();
-      setUsers(responseData);
-      const arr =  await createFollowIdArr(userFollowing)
-      await listNotFollowing(responseData, arr)
-    }
+  }, [dispatch])
+  
 
-    async function createFollowIdArr(arr) {
-      const ids = []
-      Object.values(arr).map(user => {
-        ids.push(user.user_id)
-      })
-      setFollowingIds(ids)
-      return ids
-    }
+  // useEffect(() => {
+    
+  //   async function fetchData() {
+  //     const response = await fetch("/api/users/");
+  //     const responseData = await response.json();
+  //     setUsers(responseData);
+  //     const arr =  await createFollowIdArr(userFollowing)
+  //     await listNotFollowing(responseData, arr)
+  //   }
 
-    async function listNotFollowing(res, follow) {
-      const notFollowingArr = []
-      Object.values(res).map(user => {
-        user.map(item => {
-          if (!follow.includes(item.id) && item.id !== currentUser.id) {
-            notFollowingArr.push(item)
-          }
-        })
-      })
-      setNotFollowing(notFollowingArr)
-    }
-    fetchData();
-  }, []);
+  //   async function createFollowIdArr(arr) {
+  //     const ids = []
+  //     Object.values(arr).map(user => {
+  //       ids.push(user.user_id)
+  //     })
+  //     setFollowingIds(ids)
+  //     return ids
+  //   }
+
+  //   async function listNotFollowing(res, follow) {
+  //     const notFollowingArr = []
+  //     Object.values(res).map(user => {
+  //       user.map(item => {
+  //         if (!follow.includes(item.id) && item.id !== currentUser.id) {
+  //           notFollowingArr.push(item)
+  //         }
+  //       })
+  //     })
+  //     setNotFollowing(notFollowingArr)
+  //   }
+  //   fetchData();
+  // }, []);
 
 
 
@@ -76,9 +79,9 @@ function UsersList() {
  }
 
 
-if (!notFollowing) return null;
+if (!suggestedUsers) return null;
 
-const userComponents = Object.values(notFollowing).map((user) => {
+const userComponents = Object.values(suggestedUsers).map((user) => {
   
   return (
     <div className={styles.follower}   value={user} key={user.id}>
@@ -99,7 +102,7 @@ const userComponents = Object.values(notFollowing).map((user) => {
 
 
   return (
-    <>
+    <div className='mainFollowingDiv'>
       {userComponents}
       {showModal && (
           <Modal onClose={()=> setShowModal(false)}>
@@ -118,7 +121,7 @@ const userComponents = Object.values(notFollowing).map((user) => {
             </div>
           </Modal>
         )}
-    </>
+    </div>
   );
 }
 

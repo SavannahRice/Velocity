@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import  { useDispatch, useSelector } from "react-redux";
 import { getActivities } from "../store/activity";
 import styles from './Dashboard.module.css';
-import Following from './DashboardElements/following';
+// import Following from './DashboardElements/following';
 import SideNavBar from '../components/NavBar/SideNavBar';
 import {getUser } from '../store/session';
 import Map from './DashboardElements/ActivityMap';
 import SinglePost from './FriendsActivities/Post';
 import { Modal } from '../components/context/Modal';
 import { NavLink } from 'react-router-dom';
+import UsersList from "./UsersList";
 
 
 
@@ -132,7 +133,7 @@ function Dashboard() {
                 ))}
             </div>
             <div className={styles.rightSidebar}><h3>Suggested Users</h3>
-                <Following/>
+                <UsersList/>
             </div>
             
             
