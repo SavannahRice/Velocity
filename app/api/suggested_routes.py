@@ -18,7 +18,7 @@ def get_suggested():
     following = user.follows
     idList = [follow.id for follow in following]
     idList.append(current_user.id)
-    notFollowing = User.query.filter(User.id.notin_(idList)).all()
+    notFollowing = User.query.filter(User.id.notin_(idList)).limit(10).all()
     
     return {"users": [user.to_dict() for user in notFollowing]}
 # 

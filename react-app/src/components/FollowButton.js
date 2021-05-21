@@ -1,21 +1,18 @@
 import React, {  useState } from "react";
-import styles from '../components/Dashboard.module.css'
+import styles from '../components/Dashboard.module.css';
+import {handleFollow, getSuggestedUsers} from '../store/suggested';
+import  { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function FollowButton (userId) {
     const [buttonText, setButtonText] = useState('Follow')
-    // const user = useSelector(state => state.session.user);
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
+    const history = useHistory()
 
     const addFollower = async (e) => {
-        e.preventDefault()
         const id = userId.userId
         setButtonText('Following')
-        
-        const response = await fetch(`/api/users/follow/${id}`, {
-            method: "POST"
-            })
-        const responseData = await response.json();
-        
+        dispatch(handleFollow(id))
       }
 
       return (

@@ -40,12 +40,15 @@ export const getActivities = () => async (dispatch) => {
 }
 
 export const getSingleActivity = (activityId) => async (dispatch) => {
-    const response = await fetch(`/api/activities/${activityId}`)
+    console.log(activityId)
+    const id = activityId.id
+    const response = await fetch(`/api/activities/${id}`)
 
     if (response.ok){
         const activity = await response.json()
         console.log('inside getsingleactivity thunk', activity)
-        return dispatch(singleActivity(activity))
+        dispatch(singleActivity(activity))
+        return activity
         
         
     }
@@ -155,8 +158,11 @@ export default function reducer(state = initialState, action){
         }
 
         case GET_SINGLE_ACTIVITY: {
-            const activity = action.activity
-            return {...state, activity: activity }
+            const current = action.activity
+            console.log(current.activity.id)
+            // state.activity
+            
+            return {...state, activity: current }
         }
         
 

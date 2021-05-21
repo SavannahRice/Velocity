@@ -8,15 +8,25 @@ const getUsers = (users) => ({
     payload: users
 })
 
-const removeUser = (user) => ({
+const removeUser = (id, data) => ({
     type: REMOVE_SUGGESTION,
-    payload: user
+    payload: id,
+    data
 })
 
 export const getSuggestedUsers = () => async dispatch => {
     const response = await fetch('/api/suggested/')
     const data = await response.json();
     dispatch(getUsers(data))
+
+}
+
+export const handleFollow = (id) => async dispatch => {
+    const response = await fetch(`/api/users/follow/${id}`, {
+        method: "POST"
+        })
+        const data = await response.json();
+        dispatch(removeUser(id, data))
 
 }
 
@@ -31,6 +41,15 @@ export default function reducer(state = initialState, action){
                 suggestedObj[user.id] = user
             }
             return {...state, suggested: suggestedObj}
+        case REMOVE_SUGGESTION:
+            const id = action.payload;
+            const data = action.data.user[0]
+           
+            delete state.suggested[id];
+           
+            state.suggested[data.id] = data
+            return {...state}
+
         default:
             return state;
             
