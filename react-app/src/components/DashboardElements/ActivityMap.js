@@ -30,8 +30,9 @@ function Map (id) {
         
         const getMapPoints = async () => {
             const track = await dispatch(getSingleActivity(id))
-            console.log(track.track)
-            setActivityTrack(track.track)
+            // console.log(track.track)
+            if (track){
+            setActivityTrack(track.track)}
 
         }
 

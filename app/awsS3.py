@@ -44,3 +44,15 @@ def upload_file_to_s3(file, acl="public-read"):
         return {"errors": str(e)}
 
     return {"url": f"{S3_LOCATION}{file.filename}"}
+
+def upload_object_to_s3(key, lst):
+    try:
+        s3.put_object(
+            Bucket=BUCKET_NAME, 
+            Key=key, 
+            Body=lst
+        )
+    except Exception as e:
+        return {"errors": str(e)}
+    
+    return {"url": f"{S3_LOCATION}{key}"}
