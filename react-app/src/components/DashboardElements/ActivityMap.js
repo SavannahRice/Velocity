@@ -27,9 +27,9 @@ function Map (id) {
     // }, [])
 
     useEffect(() => {
-        
+        let activityId = id.id
         const getMapPoints = async () => {
-            const track = await dispatch(getSingleActivity(id))
+            const track = await dispatch(getSingleActivity(activityId))
             // console.log(track.track)
             if (track){
             setActivityTrack(track.track)}

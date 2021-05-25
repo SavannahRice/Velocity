@@ -40,13 +40,11 @@ export const getActivities = () => async (dispatch) => {
 }
 
 export const getSingleActivity = (activityId) => async (dispatch) => {
-    console.log(activityId)
     const id = activityId.id
-    const response = await fetch(`/api/activities/${id}`)
+    const response = await fetch(`/api/activities/${activityId}`)
 
     if (response.ok){
         const activity = await response.json()
-        console.log('inside getsingleactivity thunk', activity)
         dispatch(singleActivity(activity))
         return activity
         
@@ -54,33 +52,16 @@ export const getSingleActivity = (activityId) => async (dispatch) => {
     }
 }
 
-export const getFollowingActivities = (following) => async (dispatch) => {
-    // console.log(following)
-    const allActivities = []
-    const allActivityObj = {}
-    following.map(async (singleUser) =>  {
-        const response = await fetch(`/api/activities/following/${singleUser}`)
+export const getFollowingActivities = () => async (dispatch) => {
+        const response = await fetch('/api/activities/following')
 
         if (response.ok){
             const activities = await response.json();
-            if (activities.activities.length > 0){
-                allActivityObj[singleUser] = activities.activities
-                allActivities.push(activities.activities)
-                // console.log('Here is activity obj', allActivityObj)
-            }
+            console.log(activities)
+            dispatch(setFollowingActivities(activities))
         }
-    //     if (allActivities) {
-    //     dispatch(setFollowingActivities(allActivities))
-    // }
-    })
-
-    // const response = await fetch(`/api/activities/following/${singleUser}`)
-
-    if (allActivities) {
-        dispatch(setFollowingActivities(allActivities))
-    }
-    
 }
+
 
 export const likeActivity = (activityId) => async (dispatch) => {
 
@@ -138,14 +119,10 @@ export default function reducer(state = initialState, action){
         case GET_FOLLOWING_ACTIVITIES: {
            
             const activitiesObj = {}
-            const allFollowingActivities = action.activities;
-
-            for (let i = 0; i < allFollowingActivities.length; i++){
-                const currentArr = allFollowingActivities[i]
-                for (let j = 0; j < currentArr.length; j++){
-                    const currentActivity = currentArr[j]
-                    activitiesObj[currentActivity.id] = currentActivity
-                }
+            const followingActivities = action.activities.activities;
+            console.log(followingActivities)
+            for (const activity of followingActivities){
+                activitiesObj[activity.id] = activity
             }
 
             return {...state, friends: activitiesObj}
@@ -159,7 +136,6 @@ export default function reducer(state = initialState, action){
 
         case GET_SINGLE_ACTIVITY: {
             const current = action.activity
-            console.log(current.activity.id)
             // state.activity
             
             return {...state, activity: current }

@@ -24,7 +24,6 @@ function UsersList() {
   }, [dispatch])
 
   useEffect(() => {
-    console.log('useeffect triggered')
     setSuggestions(suggestedUsers)
   }, [suggestedUsers])
 
@@ -46,7 +45,6 @@ function UsersList() {
  }
 
  
-console.log(suggestions)
 
 if (!suggestions) return null;
 

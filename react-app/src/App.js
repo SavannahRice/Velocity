@@ -41,9 +41,9 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/users" exact={true} >
+        {/* <ProtectedRoute path="/users" exact={true} >
           <UsersList/>
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path="/" exact={true}>
           <Dashboard />
         </ProtectedRoute>
@@ -56,9 +56,9 @@ function App() {
         <ProtectedRoute path="/map" exact={true}>
           <Map exact={true}/>
         </ProtectedRoute>
-        <ProtectedRoute path="/test" exact={true}>
+        {/* <ProtectedRoute path="/test" exact={true}>
           <GetSuggested />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         
 
       </Switch>

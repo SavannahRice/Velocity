@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom';
 import {Modal} from '../context/Modal.js';
 import Following from "../UsersList";
 import styles from '../Dashboard.module.css'
+import {getFollowingActivities} from '../../store/activity'
 
 
 function FriendsActivities () {
@@ -29,7 +30,7 @@ function FriendsActivities () {
     const newArr = []
 
     
-    
+    console.log(followingActivities)
     following.map((activityArr) => {
         for (let i = 0; i < activityArr.activities.length; i++){
             let current = activityArr.activities[i]
@@ -65,7 +66,10 @@ function FriendsActivities () {
 
     useEffect(() => {
         dispatch(getUser(user.id))
+        dispatch(getFollowingActivities())
     }, [dispatch])
+
+    if (!followingActivities) return null;
 
     return (
         <div className={styles.entirepage}>
@@ -84,7 +88,7 @@ function FriendsActivities () {
                     <NavLink to="/feed" exact={true} className={styles.notactive} activeClassName={styles.active} >Friends Activities</NavLink>
                 </div>
             </div>
-                {newArr.map(activity => (
+                {Object.values(followingActivities).map(activity => (
                     <div key= {activity.id} className={styles.middle}>
                         <div className={styles.profileHeader}>
                             <div className={styles.header}>

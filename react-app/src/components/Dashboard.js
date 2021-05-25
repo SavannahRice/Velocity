@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import  { useDispatch, useSelector } from "react-redux";
-import { getActivities } from "../store/activity";
+import { getActivities, getFollowingActivities } from "../store/activity";
 import styles from './Dashboard.module.css';
 // import Following from './DashboardElements/following';
 import SideNavBar from '../components/NavBar/SideNavBar';
@@ -28,11 +28,22 @@ function Dashboard() {
     const [formUpdate, setFormUpdate] = useState(false)
 
     const handleDelete = async (e) => {
-        const post = Object.values(e.target)[1]
+        let result = window.confirm('Are you sure you want to delete this activity?')
+        if (result){
+            const post = Object.values(e.target)[1]
         await fetch(`api/activities/${activityId}`, {
             method: "DELETE"
         })
         return dispatch(getUser(user.id))
+
+
+        }
+        // const post = Object.values(e.target)[1]
+        // await fetch(`api/activities/${activityId}`, {
+        //     method: "DELETE"
+        // })
+        // return dispatch(getUser(user.id))
+        else return;
 
     }
 
@@ -74,6 +85,7 @@ function Dashboard() {
 
     useEffect(() => {
         dispatch(getUser(user.id))
+        dispatch(getFollowingActivities())
     }, [dispatch])
 
     

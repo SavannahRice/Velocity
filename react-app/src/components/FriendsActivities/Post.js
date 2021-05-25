@@ -4,6 +4,8 @@ import  { useDispatch, useSelector } from "react-redux";
 import styles from './FriendsActivities.module.css'
 import {getFollowingActivities, likeActivity, unlikeActivity,  getSingleActivity} from '../../store/activity'
 import {getUser} from '../../store/session'
+// import {getSingleActivity} from '../../store/activity'
+import { getSuggestedUsers } from "../../store/suggested";
 
 function SinglePost (activity) {
     
@@ -14,8 +16,10 @@ function SinglePost (activity) {
     const [userLiked, setUserLiked] = useState(false)
     const userId = user.id
     const [activityId, setActivityId] = useState()
-    const [likeId, setLikeId] = useState(false)
     const activityLikes = activity.activity.likes
+    let numLikes = singleactivity.likes.length;
+    const [likes, setLikes] = useState(numLikes)
+    
 
     const userIdArr = []
     let isLiked = false
@@ -26,48 +30,32 @@ function SinglePost (activity) {
 
 
     if (userIdArr.includes(userId)){
-        
         isLiked = true
-        // setUserLiked(true)
-        
     }
-
-    
-
-    
-
-    useEffect(() => {
-        isLiked = userLiked
-        
-        // dispatch(getSingleActivity(activity.activity.id))
-    }, [dispatch, userLiked])
 
 
     const handleLike = () => {
          dispatch(likeActivity(activityId))
          setUserLiked(true)
-         isLiked = userLiked
-         dispatch(getUser(userId))
+         dispatch(getSingleActivity(activityId))
+         setLikes(likes => likes + 1)
        
     }
 
     const handleUnlike = () => {
         dispatch(unlikeActivity(activityId))
         setUserLiked(false)
-        isLiked = userLiked
-        dispatch(getUser(userId))
+        dispatch(getSingleActivity(activityId))
+        setLikes(likes => likes - 1)
     }
 
 
     const displayLikes = (activity) => {
-        const likes = activity.likes
-        const numLikes = likes.length
-        // if (isLiked) setUserLiked(true)
-
-        if (isLiked){
-            return <div value={activityId}><i className="fas fa-heart" onClick={handleUnlike} onMouseOver={() => setActivityId(activity.id)} value={activityId}></i><span>{numLikes} likes</span></div>
+        
+        if (userLiked){
+            return <div value={activityId}><i className="fas fa-heart" onClick={handleUnlike} onMouseOver={() => setActivityId(activity.id)} value={activityId}></i><span>{likes} likes</span></div>
         } else {
-            return <div ><i className="far fa-heart" onClick={handleLike} onMouseOver={() => setActivityId(activity.id)} value={activityId}></i><span>{numLikes} likes</span></div>
+            return <div ><i className="far fa-heart" onClick={handleLike} onMouseOver={() => setActivityId(activity.id)} value={activityId}></i><span>{likes} likes</span></div>
         }
 
        
@@ -78,21 +66,17 @@ function SinglePost (activity) {
 
     return (
         <div className={styles.middle}>
-            {/* <div className={styles.UserDiv}> */}
-                {/* <img className={styles.userAvatar} src={singleactivity.user.avatar_img} alt=""/>
-                <div className={styles.username}>{singleactivity.user.username}</div> */}
-            {/* </div> */}
             <div className={styles.activityImageWrapper}><img  className={styles.activityPhoto} src={singleactivity.photo_url} alt=""/></div>
-            <div>{displayLikes(singleactivity)}</div>
+            <div className={styles.description}>{displayLikes(singleactivity)}</div>
             <div className={styles.description}>{singleactivity.activity_description}</div>
             <div className={styles.stats}>
                 <span>
                     <p>Distance</p>
-                    <p>{singleactivity.distance}</p>
+                    <p>{singleactivity.distance} miles</p>
                 </span>
                 <span>
                     <p>Time</p>
-                    <p>{singleactivity.duration}</p>
+                    <p>{singleactivity.duration} hours</p>
                 </span>
                 <span>
                     <p>Average Speed</p>

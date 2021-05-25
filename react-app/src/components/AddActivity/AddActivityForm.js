@@ -58,6 +58,34 @@ function AddActivity () {
             console.log("error, no good.")
         }
     }
+
+    const handleDemoUpload = async (e) => {
+        e.preventDefault();
+        const formData = new FormData()
+        if (image) formData.append("image", image);
+        if (description) formData.append("description", description)
+
+        setImageLoading(true)
+
+        const res = await fetch('/api/activities/new/demo', {
+            method: "POST",
+            body:formData,
+        });
+
+        if (res.ok){
+            await res.json()
+            setImageLoading(false)
+            setShowModal(false)
+            history.push('/');
+            dispatch(getUser(user.id))
+
+        }
+        else {
+            setImageLoading(false)
+            console.log("error, no good.")
+        }
+
+    }
     if(!showModal) return null;
 
     if (showModal){
@@ -100,6 +128,7 @@ function AddActivity () {
                             />
                         </div>
                         <button className={styles.addActivityBtn} type="submit">Submit</button>
+                        <button className={styles.addActivityBtn} onClick={handleDemoUpload}>No GPS file? Click here to test.</button>
                         {(imageLoading) && <p>Loading...</p>}
                     </form>
                 </div>
