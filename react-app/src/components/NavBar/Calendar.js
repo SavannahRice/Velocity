@@ -33,6 +33,7 @@ function ActivityCalendar () {
     return (
         <div><h3 className={styles.calHeader}>Activity Calendar</h3>
           <Calendar
+            className={styles.Calendar}
             tileClassName={({ date, view }) => {return view === 'month'  && getDays.includes(date.getDate())   ? 'highlight' : null}}
             // onClick={showActivity}
           />

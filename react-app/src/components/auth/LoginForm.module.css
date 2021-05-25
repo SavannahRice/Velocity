@@ -6,6 +6,7 @@
     justify-content: flex-end;
     background-image: url('coen-van-de-broek-OFyh9TpMyM8-unsplash\ \(1\).jpg');
     background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .loginForm {
@@ -76,8 +77,8 @@
     height: 80px;
     text-align: center;
     margin-top: 20px;
-    font-weight: 200;
-    color: gray;
+    font-weight: 300;
+    color: red;
 }
 
 .terms {

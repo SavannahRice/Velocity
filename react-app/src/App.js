@@ -5,15 +5,13 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
+
 import Dashboard from './components/Dashboard';
-// import { authenticate } from "./services/auth";
+
 import { authenticate } from "./store/session";
 import FriendsActivities from "./components/FriendsActivities/FriendsActivities"
 import AddActivity from "./components/AddActivity/AddActivityForm"
-import Map from "./components/DashboardElements/ActivityMap"
-import GetSuggested from "./components/testing/getUsers";
+
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -53,9 +51,9 @@ function App() {
         <ProtectedRoute path="/newactivity" exact={true}>
           <AddActivity />
         </ProtectedRoute>
-        <ProtectedRoute path="/map" exact={true}>
+        {/* <ProtectedRoute path="/map" exact={true}>
           <Map exact={true}/>
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         {/* <ProtectedRoute path="/test" exact={true}>
           <GetSuggested />
         </ProtectedRoute> */}
