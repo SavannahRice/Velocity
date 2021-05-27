@@ -16,7 +16,7 @@ activity_routes = Blueprint('activities', __name__)
 @activity_routes.route('')
 @login_required
 def get_all_activities():
-    activities = Activity.query.filter_by(user_id=current_user.id).order_by(Activity.id.desc()).all()
+    activities = Activity.query.filter_by(user_id=current_user.id).order_by(Activity.created_at.desc()).all()
     
         
     return {"activities": [activity.to_dict() for activity in activities]}
@@ -185,7 +185,7 @@ def edit_single_activity(id):
 @login_required
 def add_demo_activity():
     
-    activity_description = 'Here is a great description for the test activity!'
+    activity_description = request.form['description']
     
     if "image" not in request.files:
         photo = 'https://www.outsideonline.com/sites/default/files/styles/full-page/public/2018/10/25/jh-fatbiking-hero_h.jpg?itok=9F62G7hf'

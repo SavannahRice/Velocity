@@ -64,6 +64,7 @@ function AddActivity () {
         const formData = new FormData()
         if (image) formData.append("image", image);
         if (description) formData.append("description", description)
+        if (!description) formData.append("description", 'Here is a description for the test activity 🚲')
 
         setImageLoading(true)
 
