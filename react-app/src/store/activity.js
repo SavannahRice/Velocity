@@ -33,7 +33,6 @@ export const getActivities = () => async (dispatch) => {
     if (response.ok){
         const activities = await response.json();
         dispatch(setActivities(activities))
-        // console.log(activities)
         return activities;
     }
     
@@ -57,52 +56,26 @@ export const getFollowingActivities = () => async (dispatch) => {
 
         if (response.ok){
             const activities = await response.json();
-            console.log(activities)
             dispatch(setFollowingActivities(activities))
         }
 }
 
 
 export const likeActivity = (activityId) => async (dispatch) => {
-
     const response = await fetch(`/api/activities/like/${activityId}`, {
         method: "POST"
     })
-
-
     const like = await response.json()
     dispatch(setLikes(like))
-    console.log('inside like activity thunk', like)
-    
-    
 }
 
 export const unlikeActivity = (activityId) => async (dispatch) => {
     const response = await fetch(`/api/activities/like/${activityId}`, {
         method: "DELETE"
     })
-
     const data = await response.json()
     return
 }
-
-// export const getActivityLikes = (activityId) => async (dispatch) => {
-//     const response = await fetch(`/api/activities/like/${activityId}`)
-//     const data = response.json()
-//     dispatch(likedActivity(data))
-
-// }
-
-// export const getLikes = () => async (dispatch) => {
-//     console.log('inside get likes thunk')
-//     const response = await fetch("/api/activities/likes")
-
-//     if (response.ok) {
-//         const likes = await response.json();
-//         dispatch(setLikes(likes))
-//         return likes
-//     }
-// }
 
 const initialState = {activities: null, friends: null, activity: null, liked: null }
 
@@ -120,28 +93,21 @@ export default function reducer(state = initialState, action){
            
             const activitiesObj = {}
             const followingActivities = action.activities.activities;
-            console.log(followingActivities)
             for (const activity of followingActivities){
                 activitiesObj[activity.id] = activity
             }
-
             return {...state, friends: activitiesObj}
 
         }
         case GET_LIKES: {
             const likes = action.likes;
-            console.log('inside getlikes reducer',likes)
-            
         }
 
         case GET_SINGLE_ACTIVITY: {
             const current = action.activity
-            // state.activity
-            
             return {...state, activity: current }
         }
         
-
         default:
             return state
     }

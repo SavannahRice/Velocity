@@ -28,9 +28,6 @@ function FriendsActivities () {
     
     // const newObj = {}
     const newArr = []
-
-    
-    console.log(followingActivities)
     following.map((activityArr) => {
         for (let i = 0; i < activityArr.activities.length; i++){
             let current = activityArr.activities[i]
@@ -116,22 +113,15 @@ function FriendsActivities () {
                                     </form>
                                 </div>
                             </Modal>
-                                
                         )}
-                        
                     </div>
-
                 ))}
             </div>
             <div className={styles.rightSidebar}><h3>Suggested Users</h3>
                 <UsersList/>
             </div>
-            
-            
         </div>
-        
     )
-
 }
 
 export default FriendsActivities

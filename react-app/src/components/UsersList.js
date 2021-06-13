@@ -20,7 +20,6 @@ function UsersList() {
   
   useEffect(() => {
       dispatch(getSuggestedUsers())
-
   }, [dispatch])
 
   useEffect(() => {
@@ -36,12 +35,10 @@ function UsersList() {
     const response = await fetch(`/api/users/${id}`);
     const user = await response.json();
     user.activities.map(activity => {
-      console.log(activity.photo_url)
     })
     setUser(user);
   };
   await getUser()
-
  }
 
  

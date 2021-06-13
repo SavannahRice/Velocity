@@ -50,7 +50,6 @@ function Dashboard() {
     const handleEdit = async (e) => {
         setShowModal(true)
         const post = Object.values(e.target)[1].value
-        console.log(post)
         setDescription(post.activity_description)
         setActivityId(post.id)
 
@@ -64,12 +63,9 @@ function Dashboard() {
         e.preventDefault()
         // const id = Object.values(e.target)[1].value
         const id = activityId
-        // console.log('ID from EDIT',activityId)
         const formData = new FormData()
         formData.append('description', newDescription)
-
         setFormUpdate(true)
-
         const res = await fetch(`/api/activities/${id}`, {
             method: "PATCH",
             body: formData
@@ -157,31 +153,3 @@ function Dashboard() {
 
 export default Dashboard;
 
-// useEffect(async () => {
-    //     const result = await dispatch(getActivities())
-    //     dispatch(getUser(user.id))
-    //     // console.log(result.tracks[0])
-    //     track = result.tracks[0]
-    // }, [dispatch])
-
-    
-    
-
-    // function initMap() {
-    //     let map = new google.maps.Map(document.getElementById("map"), {
-    //      zoom: 11,
-    //      center: {lat: 45.9110992961, lng: -112.2425238602  },
-    //    });
-    //    // NOTE: This uses cross-domain XHR, and may not work on older browsers.
-    //    map.data.loadGeoJson(
-    //      '/gps_files/GregsAprilTrack.geojson'
-    //    );
-    //   }
-    // const getFileName = async (activity) => {
-    //     const activityPath = activity.gps_file_url.split('/')
-    //     console.log(activityPath[activityPath.length-1])
-    //     const params = {Bucket: '042521srtestbucket', Key: activityPath[activityPath.length-1]}
-    //     const response = await s3.getObject(params).promise()
-    //     const fileContent = response.Body.toString('utf-8');
-    //     console.log(fileContent)
-    // }

@@ -17,7 +17,6 @@ function AddActivity () {
 
 
     const updateDescription = (e) => {
-        console.log('inside update description')
         setDescription(e.target.value)
     }
 
@@ -55,7 +54,6 @@ function AddActivity () {
         }
         else {
             setImageLoading(false)
-            console.log("error, no good.")
         }
     }
 
@@ -83,7 +81,6 @@ function AddActivity () {
         }
         else {
             setImageLoading(false)
-            console.log("error, no good.")
         }
 
     }

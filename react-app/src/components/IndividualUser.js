@@ -7,16 +7,11 @@ import {Modal} from '../components/context/Modal';
 function ShowOneUser (user) {
     const [showModal, setShowModal] = useState(false);
     const userEle = user.user;
-    console.log(userEle)
-
     return (
         <Modal onClose={()=> setShowModal(false)}>
             <h1>{userEle.username}</h1>
-
         </Modal>
     )
-
-
 }
 
 export default ShowOneUser

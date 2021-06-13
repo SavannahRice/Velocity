@@ -30,14 +30,10 @@ function Map (id) {
         let activityId = id.id
         const getMapPoints = async () => {
             const track = await dispatch(getSingleActivity(activityId))
-            // console.log(track.track)
             if (track){
             setActivityTrack(track.track)}
-
         }
-
         getMapPoints()
-
     }, [dispatch])
 
     // This calculates the middle index from the array of [latitude, longitude] subarray retrieved

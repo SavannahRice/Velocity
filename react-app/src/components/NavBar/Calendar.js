@@ -16,15 +16,9 @@ function ActivityCalendar () {
     const userActivities = useSelector(state => state.session.user.activities)
     const activity = userActivities[0]
 
-    // const showActivity = () => {
-    //   console.log('showactivity triggered')
-    //   setShowModal(true)
-
-    // }
+    
     const getDays = []
-    // console.log(userActivities)
     userActivities.map(activity => {
-      // console.log(activity.created_at.split(' ')[1])
       getDays.push(parseInt(activity.created_at.split(' ')[1]))
     })
     
@@ -35,11 +29,7 @@ function ActivityCalendar () {
           <Calendar
             className={styles.Calendar}
             tileClassName={({ date, view }) => {return view === 'month'  && getDays.includes(date.getDate())   ? 'highlight' : null}}
-            // onClick={showActivity}
           />
-          {/* {showModal && (
-            <div>{activity.description}</div>
-          )} */}
         </div>
       );
 
