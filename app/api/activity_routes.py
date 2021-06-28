@@ -12,7 +12,7 @@ from app.awsS3 import (
     upload_file_to_s3, allowed_file, get_unique_filename, upload_object_to_s3)
 
 activity_routes = Blueprint('activities', __name__)
-
+#test 
 @activity_routes.route('')
 @login_required
 def get_all_activities():
