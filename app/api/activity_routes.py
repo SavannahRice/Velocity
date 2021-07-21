@@ -12,7 +12,7 @@ from app.awsS3 import (
     upload_file_to_s3, allowed_file, get_unique_filename, upload_object_to_s3)
 
 activity_routes = Blueprint('activities', __name__)
-#test 
+
 @activity_routes.route('')
 @login_required
 def get_all_activities():
@@ -145,8 +145,8 @@ def add_single_activity():
     
     new_activity = Activity(activity_type_id=1,user_id=current_user.id, gps_file_url=url, 
                     photo_url=photo,
-                    activity_description=activity_description, duration=round(moving_data.moving_time / 1002, 1), 
-                    distance=round(moving_data.moving_distance * 0.000621371, 1),
+                    activity_description=activity_description, duration=round(moving_data.moving_time / 3600, 1), 
+                    distance=round(moving_data.moving_distance / 1609, 1),
                     avg_speed=round(moving_data.moving_distance/moving_data.moving_time, 1),
                     max_speed=round(moving_data.max_speed, 1), 
                     ascent_feet=300,
