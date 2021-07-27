@@ -3,6 +3,7 @@ const GET_FOLLOWING_ACTIVITIES = 'activity/GET_FOLLOWING_ACTIVITIES'
 const GET_LIKES = 'likes/GET_LIKES'
 const GET_SINGLE_ACTIVITY = 'activity/GET_SINGLE_ACTIVITY'
 const INCREMENT = 'activity/INCREMENT'
+const ADD_SINGLE_ACTIVITY = 'activity/ADD_SINGLE_ACTIVITY'
 
 const setActivities = (activities) => ({
     type: GET_ACTIVITIES,
@@ -24,16 +25,35 @@ const singleActivity = (activity) => ({
     activity
 })
 
+const addActivity = (data) => ({
+    type: ADD_SINGLE_ACTIVITY,
+    data
+})
+
 
 
 
 export const getActivities = () => async (dispatch) => {
     const response = await fetch("/api/activities")
-
+    console.log('INSIDE GET ACTIVITY THUNK')
     if (response.ok){
         const activities = await response.json();
         dispatch(setActivities(activities))
-        return activities;
+    }
+    
+}
+
+export const createActivity = (activityData) => async (dispatch) => {
+    // const activity = activityData
+    console.log('data', activityData)
+    const response = await fetch(`/api/activities/new`, {
+        method: "POST",
+        body: activityData
+    })
+
+    const data = await response.json()
+    if (response.ok){
+        dispatch(addActivity(data))
     }
     
 }
@@ -77,7 +97,7 @@ export const unlikeActivity = (activityId) => async (dispatch) => {
     return
 }
 
-const initialState = {activities: null, friends: null, activity: null, liked: null }
+const initialState = {user_activities: null, friends: null, activity: null, liked: null }
 
 export default function reducer(state = initialState, action){
     switch(action.type){
@@ -87,7 +107,7 @@ export default function reducer(state = initialState, action){
             for (const activity of allActivities){
                 activitiesObj[activity.id] = activity
             }
-            return {...state, activities: activitiesObj}
+            return {...state, user_activities: activitiesObj}
         }
         case GET_FOLLOWING_ACTIVITIES: {
            
@@ -106,6 +126,14 @@ export default function reducer(state = initialState, action){
         case GET_SINGLE_ACTIVITY: {
             const current = action.activity
             return {...state, activity: current }
+        }
+
+        case ADD_SINGLE_ACTIVITY: {
+            const data = action.data.activity
+            const id = action.data.activity.id
+            let obj = {...state.user_activities}
+            obj[id] = data
+            return {...state, user_activities: obj}
         }
         
         default:

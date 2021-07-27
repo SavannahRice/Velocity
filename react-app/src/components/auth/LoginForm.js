@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import styles from './LoginForm.module.css'
 import photo from './coen-van-de-broek-m3deylWrxHw-unsplash.jpg'
+import { getActivities } from "../../store/activity";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const LoginForm = () => {
     if (data.errors) {
       setErrors(data.errors);
     }
+    
   };
 
   const demoLogin = async (e) => {
@@ -26,7 +28,7 @@ const LoginForm = () => {
     if (data.errors) {
       setErrors(data.errors);
     }
-
+    await dispatch(getActivities())
   }
 
   const updateEmail = (e) => {

@@ -62,7 +62,7 @@ function FriendsActivities () {
     }
 
     useEffect(() => {
-        dispatch(getUser(user.id))
+        // dispatch(getUser(user.id))
         dispatch(getFollowingActivities())
     }, [dispatch])
 

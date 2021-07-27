@@ -23,7 +23,7 @@ const ActivityStats = () => {
     
     
     useEffect(() => {
-        dispatch(getUser(user.id))
+        // dispatch(getUser(user.id))
         setFollowing(user.following.length)
 
     }, [])

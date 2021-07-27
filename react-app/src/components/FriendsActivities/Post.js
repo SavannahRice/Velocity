@@ -11,6 +11,7 @@ function SinglePost (activity) {
     
     const singleactivity = activity.activity
     const user = useSelector(state => state.session.user);
+    const track = activity
     
     const dispatch = useDispatch()
     const [userLiked, setUserLiked] = useState(false)
