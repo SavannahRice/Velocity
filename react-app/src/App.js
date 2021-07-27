@@ -5,9 +5,7 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-
 import Dashboard from './components/Dashboard';
-
 import { authenticate } from "./store/session";
 import FriendsActivities from "./components/FriendsActivities/FriendsActivities"
 import AddActivity from "./components/AddActivity/AddActivityForm"
