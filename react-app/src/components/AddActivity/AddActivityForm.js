@@ -4,6 +4,7 @@ import styles from "./AddActivity.module.css"
 import { Modal } from '../context/Modal';
 import  { useDispatch, useSelector} from "react-redux";
 import {getUser} from "../../store/session";
+import {createActivity} from "../../store/activity"
 
 function AddActivity () {
     const history = useHistory()
@@ -39,22 +40,12 @@ function AddActivity () {
 
         setImageLoading(true)
 
-        const res = await fetch('/api/activities/new', {
-            method: "POST",
-            body:formData,
-        });
-
-        if (res.ok){
-            await res.json()
-            setImageLoading(false)
-            setShowModal(false)
-            history.push('/');
-            dispatch(getUser(user.id))
-
-        }
-        else {
-            setImageLoading(false)
-        }
+        dispatch(createActivity(formData))
+        setImageLoading(false)
+        setShowModal(false)
+        history.push('/');
+        dispatch(getUser(user.id))
+        
     }
 
     const handleDemoUpload = async (e) => {
@@ -140,47 +131,3 @@ function AddActivity () {
 
 export default AddActivity
 
-{/* <div className={styles.entirepage}>
-            <div className={styles.leftSidebar}>
-                <SideNavBar/>
-            </div>
-            <div className={styles.container}>
-                <img className={styles.runPhoto} src={photo} alt=""/>
-                <h2 className={styles.centeredText}>What did you do today?</h2>
-            </div>
-            <div className={styles.formDiv}>
-                <form id={styles.activityForm} onSubmit={handleSubmit}><h2>Add an Activity!</h2>
-                    <p>Describe your activity!</p>
-                    <input 
-                    type="text"
-                    name="description"
-                    // placeholder="Descripion"
-                    onChange={updateDescription}
-                    value={description}
-                    ></input>
-                    <div><p>Select an Actity Type!</p>
-                        <select>
-                            <option value="">Road Biking</option>
-                            <option value="">Mountain Biking</option>
-                            <option value="">Running</option>
-                            <option value="">Trail Running</option>
-                        </select>
-                    </div>
-                    <div><p>Add GPS File here!</p>
-                        <input type="file"
-                        onChange={updateGpx}
-                        />
-                    </div>
-                    <div><p>Add Image here!</p>
-                        <input
-                        type="file"
-                        accept="image/*"
-                        onChange={updateImage}
-                        />
-                    </div>
-                    <button type="submit">Submit</button>
-                    {(imageLoading) && <p>Loading...</p>}
-                </form>
-
-            </div>
-        </div> */}

@@ -17,7 +17,7 @@ from .seeds import seed_commands
 from .config import Config
 
 app = Flask(__name__)
-
+# migrate = Migrate(compare_type=True)
 # Setup login manager
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
@@ -38,7 +38,7 @@ app.register_blueprint(activity_routes, url_prefix='/api/activities')
 app.register_blueprint(follower_routes, url_prefix='/api/followers')
 app.register_blueprint(suggested_routes, url_prefix='/api/suggested')
 db.init_app(app)
-Migrate(app, db)
+Migrate(app, db, compare_type=True)
 
 # Application Security
 CORS(app)

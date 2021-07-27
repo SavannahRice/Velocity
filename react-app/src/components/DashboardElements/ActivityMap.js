@@ -1,47 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import './ActivityMap.css'
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
-import {getSingleActivity} from '../../store/activity'
-import  { useDispatch, useSelector } from "react-redux";
+import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
 
-function Map (id) {
+function Map (activity) {
 
-    const [activityTrack, setActivityTrack] = useState(null)
     const blueOptions = { color: '#4b6cff' }
-    const activityId = id.id
-    const dispatch = useDispatch()
-    
-    // Retrieves a single activity from the backend. After the activity is successfully retrieved, 
-    // the track is set with the useState hook. 
-    // const get_activity = async (e) => {
-    //     const activity = await fetch(`api/activities/${activityId}`)
-
-    //     if (activity.ok){
-    //         const track = await activity.json()
-    //         setActivityTrack(track.track)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     get_activity()
-    // }, [])
-
-    useEffect(() => {
-        let activityId = id.id
-        const getMapPoints = async () => {
-            const track = await dispatch(getSingleActivity(activityId))
-            if (track){
-            setActivityTrack(track.track)}
-        }
-        getMapPoints()
-    }, [dispatch])
+    const activityTrack = activity.id.gps_file_url
 
     // This calculates the middle index from the array of [latitude, longitude] subarray retrieved
     // from the backend and sets the middle index as the center point of the map. 
     if (activityTrack){
         let middleIndex = Math.floor(activityTrack.length/2)
         let center = activityTrack[middleIndex]
-        
 
         return (
             <div>

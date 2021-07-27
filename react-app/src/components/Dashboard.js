@@ -17,9 +17,8 @@ import UsersList from "./UsersList";
 function Dashboard() {
 
     const user = useSelector(state => state.session.user);
-    const followers = user.followers
     const activities = user.activities
-    // const gps_url = user.activities[0].gps_file_url
+    const userActivities = useSelector(state => state.activities.user_activities)
     const dispatch = useDispatch()
     const [activityId, setActivityId] = useState()
     const [showModal, setShowModal] = useState(false);
@@ -36,15 +35,8 @@ function Dashboard() {
         })
         return dispatch(getUser(user.id))
 
-
         }
-        // const post = Object.values(e.target)[1]
-        // await fetch(`api/activities/${activityId}`, {
-        //     method: "DELETE"
-        // })
-        // return dispatch(getUser(user.id))
         else return;
-
     }
 
     const handleEdit = async (e) => {
@@ -52,7 +44,6 @@ function Dashboard() {
         const post = Object.values(e.target)[1].value
         setDescription(post.activity_description)
         setActivityId(post.id)
-
     }
 
     const updateDescription = (e) => {
@@ -61,7 +52,6 @@ function Dashboard() {
 
     const handleSumbit = async (activity,  e) => {
         e.preventDefault()
-        // const id = Object.values(e.target)[1].value
         const id = activityId
         const formData = new FormData()
         formData.append('description', newDescription)
@@ -79,12 +69,12 @@ function Dashboard() {
         }
     }
 
-    useEffect(() => {
-        dispatch(getUser(user.id))
-        dispatch(getFollowingActivities())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getActivities())
+    // }, [])
 
-    
+    if (!userActivities) return null;
+
 
     return (
         <div className={styles.entirepage}>
@@ -103,7 +93,7 @@ function Dashboard() {
                     <NavLink to="/feed" exact={true} className={styles.notactive} activeClassName={styles.active} >Friends Activities</NavLink>
                 </div>
             </div>
-                {activities.map(activity => (
+                {Object.values(userActivities).map(activity => (
                     <div className={styles.middle} key={activity.id}>
                         <div className={styles.profileHeader}>
                             <div className={styles.header}>
@@ -114,7 +104,7 @@ function Dashboard() {
                             </div>
                             <div className={styles.headerDiv}><i className="fas fa-edit" value={activity} onMouseOver={() => setActivityId(activity.id)} onClick={handleEdit} ></i><i className="fas fa-trash-alt"  value={activity.id} onMouseOver={() => setActivityId(activity.id)} onClick={handleDelete}></i></div>
                         </div>
-                        <div className={styles.mapDiv}><Map id={activity.id}/></div>
+                        <div className={styles.mapDiv}><Map id={activity}/></div>
                         <SinglePost activity={activity} />
                         {showModal && (
                             <Modal onClose={() => setShowModal(false)}>
